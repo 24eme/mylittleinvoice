@@ -43,73 +43,25 @@
         <!-- Main content -->
         <section class="content">
           <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-xs-6">
+
+		  
+		  <div class="row">
+              <div class="col-lg-3 col-xs-6">
               <!-- small box -->
-              <div class="small-box bg-aqua" onclick="window.location = 'quotes.php';">
+              <div class="small-box bg-green" onclick="window.location = 'facturationat86.php';">
                 <div class="inner">
-                  <h3><?php 
-	                  $count = $bd->get_results('SELECT COUNT(*) AS nbr FROM ' . $bd->prefix . 'quotes');
-	                  echo $count[0]->nbr;
-	                   ?></h3>
-                  <p><?php echo $lang['saved_quotes']; ?></p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-clipboard"></i>
-                </div>
-                <a href="quotes.php" class="small-box-footer"><?php echo $lang['go_to_page']; ?> <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green" onclick="window.location = 'quotes.php';">
-                <div class="inner">
-                  <h3><?php 
-	                  $count = $bd->get_results('SELECT COUNT(*) AS nbr FROM ' . $bd->prefix . 'quotes');
-	                  $count2 = $bd->get_results('SELECT COUNT(*) AS nbr FROM ' . $bd->prefix . 'quotes WHERE invoice="true"');
-	                  if($count2[0]->nbr > 0 AND $count[0]->nbr > 0){echo round($count2[0]->nbr*100/$count[0]->nbr);}else{echo '0';}
-	                   ?><sup style="font-size: 20px">%</sup></h3>
-                  <p><?php echo $lang['converted_quotes']; ?></p>
+                  <h3>... <i class="fa fa-euro"></i></h3>
+                  <p><?php echo $lang['global_invoicing']; ?></p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="quotes.php" class="small-box-footer"><?php echo $lang['go_to_page']; ?> <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow" onclick="window.location = 'customers.php';">
-                <div class="inner">
-                  <h3><?php 
-	                  $count = $bd->get_results('SELECT COUNT(*) AS nbr FROM ' . $bd->prefix . 'customers');
-	                  echo $count[0]->nbr;
-	                   ?></h3>
-	               <p><?php echo $lang['saved_customers']; ?></p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="customers.php" class="small-box-footer"><?php echo $lang['go_to_page']; ?> <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-red" onclick="window.location = 'payments.php';">
-                <div class="inner">
-                  <h3><?php 
-	                  $count = $bd->get_results('SELECT COUNT(*) AS nbr FROM ' . $bd->prefix . 'payments');
-	                  echo $count[0]->nbr;
-	                   ?></h3>
-                  <p><?php echo $lang['dashboard_payments']; ?> </p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="payments.php" class="small-box-footer"><?php echo $lang['go_to_page']; ?> <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="etat-y-factat86.php" class="small-box-footer"><?php echo $lang['go_to_page']; ?> <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
           </div><!-- /.row -->
+		  
+		  
           <!-- Main row -->
           
 

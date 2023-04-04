@@ -17,9 +17,9 @@
 		global $lang;
 ?> <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> Alpha 0.5
+          <b>Version</b> 2019.1
         </div>
-        <strong><a href="http://www.mylittleinvoice.com">MyLittleInvoice</a>, <?php echo $lang['motor_by']; ?> <a href="http://almsaeedstudio.com">Almsaeed Studio</a>, Copyright &copy; 2014-2015.</strong> 
+        <strong>Facturation 2019 pour l'<a href="http://www.at86.fr" target=_blank>Agence des Territoires de la Vienne</a>.</strong> 
       </footer>
       
       <!-- Control Sidebar -->      
@@ -36,7 +36,7 @@
           <hr />
           <div class="form-group">
 	         <ul class="sidebar-menu">
-		      	<li>
+		      	<!-- <li>
 	              <a href="options-general.php" style="color:#b8c7ce;">
 	                <i class="fa fa-sliders"></i> <span><?php echo $lang['general']; ?></span>    
 	              </a>
@@ -50,10 +50,25 @@
 	              <a href="options-file.php" style="color:#b8c7ce;">
 	                <i class="fa fa-file"></i> <span><?php echo $lang['documents']; ?></span>    
 	              </a>
-	            </li>
+	            </li>-->
 	            <li> 
 	              <a href="options-users.php" style="color:#b8c7ce;">
 	                <i class="fa fa-users"></i> <span><?php echo $lang['users']; ?></span>    
+	              </a>
+	            </li>
+	            <li> 
+	              <a href="options-config.php" style="color:#b8c7ce;">
+	                <i class="fa fa-file"></i> <span><?php echo $lang['config']; ?></span>    
+	              </a>
+	            </li>
+	            <li> 
+	              <a href="options-confignp.php" style="color:#b8c7ce;">
+	                <i class="fa fa-file"></i> <span><?php echo $lang['confignp']; ?></span>    
+	              </a>
+	            </li>
+	            <li> 
+	              <a href="options-analytique.php" style="color:#b8c7ce;">
+	                <i class="fa fa-file"></i> <span><?php echo $lang['configana']; ?></span>    
 	              </a>
 	            </li>
 	         </ul>

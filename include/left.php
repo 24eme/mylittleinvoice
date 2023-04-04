@@ -47,73 +47,42 @@
                 <i class="fa fa-dashboard"></i> <span><?php echo $lang['dashboard']; ?></span>    
               </a>
             </li>
+			<li class="treeview">
+              <a href="#">
+                <i class="fa fa-cubes"></i>
+                <span><?php echo $lang['invoicing']; ?></span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="facturationat86.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['global_invoicing']; ?></a></li>
+		<li><a href="etat-y-factat86.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['state_invoicing']; ?></a></li>
+                <li><a href="facturationurba.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['urba_invoicing']; ?></a></li>
+                <li><a href="etat-y-facturba.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['statu_invoicing']; ?></a></li>
+              </ul>
+            </li>		
+            <li>
+            <a href="#">
+              <i class="fa fa-area-chart"></i>
+              <span><?php echo $lang['global_simulation']; ?></span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+              <ul class="treeview-menu">
+                <li><a href="gosimul.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['global_np_simulation']; ?></a></li>
+              </ul>
+            </li>       
+<!-- A implementer
             <li class="treeview">
-              <a href="#">
-                <i class="fa fa-users"></i>
-                <span><?php echo $lang['customers']; ?></span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="new-customer.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['new_customer']; ?></a></li>
-                <li><a href="customers.php"><i class="fa ion-ios-arrow-forward"></i> <?php echo $lang['customers_list']; ?></a></li>
-              </ul>
-            </li>
-            
-             <li class="treeview">
-              <a href="#">
-                <i class="fa fa-file-text-o"></i>
-                <span>Devis</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="new-quote.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['new_quote']; ?></a></li>
-                <li><a href="quotes.php"><i class="fa ion-ios-arrow-forward"></i> <?php echo $lang['quotes_list']; ?></a></li>
-              </ul>
-            </li>
-            
-             <li class="treeview">
-              <a href="#">
-                <i class="fa  fa-file-text"></i>
-                <span><?php echo $lang['invoices']; ?></span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="new-invoice.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['new_invoice']; ?></a></li>
-                <li><a href="invoices.php"><i class="fa ion-ios-arrow-forward"></i> <?php echo $lang['invoices_list']; ?></a></li>
-              </ul>
-            </li>
-            
-             <li class="treeview">
-              <a href="#">
-                <i class="fa  fa-credit-card"></i>
-                <span><?php echo $lang['payments']; ?></span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="new-payment.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['new_payment']; ?></a></li>
-                <li><a href="payments.php"><i class="fa ion-ios-arrow-forward"></i> <?php echo $lang['payments_list']; ?></a></li>
-              </ul>
-            </li>
-            
-             <li class="treeview">
-              <a href="#">
+             <a href="#">
                 <i class="fa fa-bar-chart-o"></i>
                 <span><?php echo $lang['reports']; ?></span>
                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="reports-month.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['report_month']; ?></a></li>
-                <li><a href="reports-year.php"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['report_year']; ?></a></li>
-              </ul>
+             </a>
+             <ul class="treeview-menu">
+                <li><a href="#"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['report_month']; ?></a></li>
+                <li><a href="#"><i class="fa ion-ios-plus-empty"></i> <?php echo $lang['report_year']; ?></a></li>
+             </ul>
             </li>
-            
-            <?php
-	            /* <li class="header">LABELS</li>
-            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
-            */ ?>
-          </ul>
+-->
         </section>
         <!-- /.sidebar -->
       </aside>

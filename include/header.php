@@ -18,9 +18,9 @@
         <!-- Logo -->
         <a href="index.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>M</b>LI</span>
+          <span class="logo-mini"><b>AT</b>86</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>MyLittle</b>Invoice</span>
+          <span class="logo-lg"><b>Facturation AT86</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -36,38 +36,18 @@
 							case 'french':
 								echo '<img src="dist/img/flags/fr.png" /> Français';
 							break;
-							case 'english':
+/*  				        case 'english':
 								echo '<img src="dist/img/flags/gb.png" /> English';
 							break;
+*/						
 					}
 	              	?></a>
-              	<ul class="lang_list">
+ <!--            	<ul class="lang_list">
 	              	<li><a href="index.php?change_lang=french"><img src="dist/img/flags/fr.png" /> Français</a></li>
 	              	<li><a href="index.php?change_lang=english"><img src="dist/img/flags/gb.png" /> English</a></li>
-              	</ul>
+              	</ul> -->
               </li>
-              <!-- Messages: style can be found in dropdown.less-->
-                            <!-- Control Sidebar Toggle Button -->
-                            <?php 
-	              	global $bd;
-	              	if(!empty($horizontal_menu)){echo $horizontal_menu;}
-	              	$test_date = $bd->get_results('SELECT * FROM ' . $bd->prefix . 'quotes WHERE archived="false"');
-	              	$cdate = 0;
-	              	foreach($test_date as $td){
-		              	if(strtotime(str_replace('/', '-', $td->date_end)) < strtotime(date('Y-m-d'))){$cdate ++;}
-	              	}
-	              	if($cdate > 0){echo '
-               <li> <a href="quotes.php?select=ended" title="Devis expirés"><i class="fa fa-file-text-o"></i><span class="label label-danger">' . $cdate . '</span></a></li>';}
-	              	$test_date = $bd->get_results('SELECT * FROM ' . $bd->prefix . 'invoices WHERE archived="false"');
-	              	$cdate = 0;
-	              	foreach($test_date as $td){
-		              	if(strtotime(str_replace('/', '-', $td->date_end)) < strtotime(date('Y-m-d'))){$cdate ++;}
-	              	}
-	              	if($cdate > 0){echo '
-               <li> <a href="invoices.php?select=ended" title="Facture en attente de règlement"><i class="fa fa-file-text"></i><span class="label label-danger">' . $cdate . '</span></a></li>';}
-              	?>
               <li>
-              	
                 <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
               </li>
               <li class="user" style="min-width:30px;cursor:pointer;">

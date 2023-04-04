@@ -2,6 +2,7 @@
 	$language['english'] = array(
 		// Menu
 		'dashboard' => 'Dashboard',
+		'global_invoicing' => 'Global Invoicing',
 		'customers' => 'Customers',
 		'new_customer' => 'New customer',
 		'customers_list' => 'Customers list',

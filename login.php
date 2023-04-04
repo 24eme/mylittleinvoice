@@ -21,7 +21,8 @@
 <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="index.php"><b>MyLittle</b>Invoice</a>
+	    <center><img src="./uploads/at86grc400X88.jpg"></center><br>
+        <a href="index.php"><b>Facturation 2022</b></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <?php 
