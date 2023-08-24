@@ -191,8 +191,7 @@
 		                    	$total = ($taxes+$p['price'])*$p['qty'];
 		                    	$total_products += $p['price']*$p['qty'];
 		                    	$total_taxes += $taxes*$p['qty'];
-		                    	if($p['qty'] == ''){$total = '';}else{$total = number_format($total,2) . '€';}
-	                    		echo ' <tr><td class="qty">' . $p['qty'] . '</td><td class="ref">' . $p['ref'] . '</td><td class="description">' . $p['description'] . '</td><td class="price">' . $p['price'] . '</td><td class="taxes">' . $p['taxes'] . '</td><td class="total">' . $total . '</td></tr>';
+	                    		echo ' <tr><td class="qty">' . $p['qty'] . '</td><td class="ref">' . $p['ref'] . '</td><td class="description">' . $p['description'] . '</td><td class="price">' . $p['price'] . '</td><td class="taxes">' . $p['taxes'] . '</td><td class="total">' . number_format($total,2) . '€</td></tr>';
 	                    		$count++;
 	                    }
 	                     ?>

@@ -54,45 +54,4 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <?php if(isset($insert_in_head)){echo $insert_in_head;} ?>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-    <script type="text/javascript">
-	    jQuery(function(){
-		    jQuery(document).keydown(function (event){
-		        // Raccourci Devis
-		        if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 68){
-			        window.open('quotes.php');
-			        event.preventDefault();
-			        return false;
-		        }
-		        if ((event.ctrlKey || event.metaKey) && event.which == 68){
-			        window.open('new-quote.php');
-			        event.preventDefault();
-			        return false;
-		        }
-		        // Raccourci Factures
-		        if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 70){
-			        window.open('invoices.php');
-			        event.preventDefault();
-			        return false;
-		        }
-		        if ((event.ctrlKey || event.metaKey) && event.which == 70){
-			        window.open('new-invoice.php');
-			        event.preventDefault();
-			        return false;
-		        }
-		        // Raccourci clients
-		        if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 67){
-			        window.open('customers.php');
-			        event.preventDefault();
-			        return false;
-		        }
-		        if ((event.ctrlKey || event.metaKey) && event.which == 67){
-			        window.open('new-customer.php');
-			        event.preventDefault();
-			        return false;
-		        }
-	        });
-	        
-	    });
-    </script>
   </head>

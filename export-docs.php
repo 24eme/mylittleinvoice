@@ -256,11 +256,7 @@ $pdf->AddFont('SourceSansProBold','','SourceSansPro-Bold.php');
 	$total_taxes = 0;
 foreach(unserialize($results->products) as $p){
 	$taxes = $p['price']*($p['taxes']/100);
-	if($p['qty'] == ''){
-		$total = '';
-	}else{
-		$total = number_format(($taxes+$p['price'])*$p['qty'],2).$bd->get_option('money_symbole');
-	}
+	$total = ($taxes+$p['price'])*$p['qty'];
 	$total_products += $p['price']*$p['qty'];
 	$total_taxes += $taxes*$p['qty'];
 	if($count_2 > 15){
@@ -279,7 +275,7 @@ foreach(unserialize($results->products) as $p){
     $pdf->Text(50,$count, iconv('UTF-8', 'windows-1252', $p['description']),0,0,'C');
     $pdf->Text(126,$count, iconv('UTF-8', 'windows-1252', $p['price']),0,0,'C');
 	$pdf->Text(154,$count, iconv('UTF-8', 'windows-1252', $p['taxes']),0,0,'C');
-	$pdf->Text(173,$count, iconv('UTF-8', 'windows-1252', $total),0,0,'C');
+	$pdf->Text(173,$count, iconv('UTF-8', 'windows-1252', number_format($total,2).$bd->get_option('money_symbole')),0,0,'C');
 	
 	$count = $count+9;
 	$count_2 += 1;

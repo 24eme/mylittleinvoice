@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>
 		*/
-	$insert_in_head = '<style type="text/css">select{height:15px;padding:0;}.dates{width:10%;}.quote_list tbody td{cursor:pointer;}</style>';
+	$insert_in_head = '<style type="text/css">select{height:15px;padding:0;}.dates{width:10%;}</style>';
 	$ua = $_SERVER['HTTP_USER_AGENT'];
 			if (preg_match('/iphone/i',$ua) || preg_match('/android/i',$ua) || preg_match('/blackberry/i',$ua) || preg_match('/symb/i',$ua) || preg_match('/ipod/i',$ua) || preg_match('/phone/i',$ua)){
 				$insert_in_head .= '<link rel="stylesheet" type="text/css" href="dist/css/smartphones.css" />';

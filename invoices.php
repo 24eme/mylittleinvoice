@@ -41,7 +41,6 @@
 			.payment_box table,.payment_box select{width:100%;}
 			.payment_box th{width:50%;}
 			.payment_box input{height:20px;padding:2px;}
-			.payment_box tbody td{cursor:pointer;}
 			.close_box{position:absolute;margin-top : 200px;}
 	</style>';
 	$ua = $_SERVER['HTTP_USER_AGENT'];
