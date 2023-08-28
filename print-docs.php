@@ -14,22 +14,22 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>
 		*/
-	include('config.php');	
-	
+	include('config.php');
+
 ?><!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <title>MyLittleInvoice | Impression</title>
     <!-- Bootstrap 3.3.4 -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- FontAwesome 4.3.0 -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="dist/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons 2.0.0 -->
-    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
+    <link href="dist/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
     <!-- iCheck -->
