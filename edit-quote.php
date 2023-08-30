@@ -72,7 +72,7 @@
 			     'footer_infos'=>nl2br($_POST['footer_infos'])
 		     );
 		     $bd->insert($bd->prefix . 'quotes',$quote);
-		     $quote = $bd->get_results('SELECT * FROM ' . $bd->prefix . 'quotes WHERE id=LAST_INSERT_ID();');
+		     $quote = $bd->get_results('SELECT * FROM ' . $bd->prefix . 'quotes ORDER BY id DESC LIMIT 1;');
 		     $_GET['id_quote'] = $quote[0]->id;
 	     }
 	     // Enregistrement d'un devis modifié

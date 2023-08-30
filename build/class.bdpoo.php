@@ -30,29 +30,28 @@ class Bd{
 	public function insert($table_name, $data){
 		$insert_id = '';
 		$insert_value = '';
-		mysql_connect($this->host, $this->login, $this->password);
-		mysql_select_db($this->basename);
+		$mysqli = new mysqli($this->host, $this->login, $this->password, $this->basename);
 		foreach($data as $id => $value){
-		$id = addslashes($id);
-		$value = addslashes($value);
+			$id = addslashes($id);
+			$value = addslashes($value);
 			if($insert_id == ''){$insert_id .= '' . $id . '';}else{$insert_id .= ', ' . $id . '';}
 			if($insert_value == ''){$insert_value .= '"' . $value . '"';}else{$insert_value .= ' ,"' . $value . '"';}
 		}
-		$mysql_query = 'INSERT INTO ' . $table_name. '(' . $insert_id . ') VALUES(' . $insert_value . ')';
-		if(mysql_query($mysql_query)){
+		$mysqli_query = 'INSERT INTO ' . $table_name. '(' . $insert_id . ') VALUES(' . $insert_value . ')';
+		if($mysqli->query($mysqli_query)){
+			$mysqli->close();
 			return true;
 		}else{
+			$mysqli->close();
 			return false;
 		}
-		mysql_close();
 	}
 	public function update($table_name, $data, $where){
-		mysql_connect($this->host, $this->login, $this->password);
-		mysql_select_db($this->basename);
+		$mysqli = new mysqli($this->host, $this->login, $this->password, $this->basename);
 		$insert_value = '';
 		foreach($data as $id => $value){
-		$id = addslashes($id);
-		$value = addslashes($value);
+			$id = addslashes($id);
+			$value = addslashes($value);
 			if($insert_value == ''){$insert_value .= $id . '="' . $value . '"';}else{$insert_value .= ', ' . $id . '="' . $value . '"';}
 		}
 		$where_insert = '';
@@ -61,49 +60,49 @@ class Bd{
 			$value = addslashes($value);
 			if($where_insert == ''){$where_insert .= $id . '="' . $value . '"';}else{$where_insert .= ' AND ' . $id . '="' . $value . '"';}
 		}
-		$mysql_query = 'UPDATE ' . $table_name. ' SET ' . $insert_value . ' WHERE ' . $where_insert . '';
-		
-		if(mysql_query($mysql_query)){
-		return true;
+		$mysqli_query = 'UPDATE ' . $table_name. ' SET ' . $insert_value . ' WHERE ' . $where_insert . '';
+
+		if($mysqli->query($mysqli_query)){
+			$mysqli->close();
+			return true;
 		}else{
-		return false;
+			$mysqli->close();
+			return false;
 		}
-		mysql_close();
 	}
 	public function get_results($request){
-		mysql_connect($this->host, $this->login, $this->password);
-		mysql_select_db($this->basename);
-		$results = mysql_query($request);
+		$mysqli = new mysqli($this->host, $this->login, $this->password, $this->basename);
+		$results = $mysqli->query($request);
 		$reponse = array();
 		$counter = 0;
-		while ($result = mysql_fetch_array($results)){
+		while ($result = $results->fetch_array()){
 			$reponse[$counter] = new stdClass;
 			foreach($result as $key => $value){
-					$reponse[$counter]->$key = stripcslashes($value);
+				$reponse[$counter]->$key = stripcslashes($value);
 			}
 			$counter++;
 		}
+		$mysqli->close();
 		return $reponse;
-		mysql_close();
 	}
 	public function query($query = ''){
-		mysql_connect($this->host, $this->login, $this->password);
-		mysql_select_db($this->basename);
-		$results = mysql_query($query);
+		$mysqli = new mysqli($this->host, $this->login, $this->password, $this->basename);
+		$results = $mysqli->query($query);
+		$mysqli->close();
 		return true;
-		mysql_close();
 	}
-	public function get_option($name=''){
+	public function get_option($name='', $default=null){
 		$r = $this->get_results('SELECT * FROM ' . $this->option_table . ' WHERE option_name="' . $name . '"');
 		if(is_array($r) AND !empty($r)){
-			$reponse = $r[0]->option_value;	
+			$reponse = $r[0]->option_value;
+		}elseif($default) {
+			$reponse = $default;
 		}elseif(isset($r)){
 			$reponse = true;
 		}else{
 			$reponse = false;
 		}
 		return $reponse;
-		mysql_close();
 	}
 	public function set_option($name='',$value=''){
 		$r = $this->get_results('SELECT * FROM ' . $this->option_table . ' WHERE option_name="' . $name . '"');
@@ -122,8 +121,9 @@ class Bd{
 		}
 	}
 	public function test_connect($host = '', $login = '', $password = '', $basename = ''){
-		if(mysql_connect($host, $login, $password)){
-			if(mysql_select_db($basename)){
+		if(mysqli_connect($host, $login, $password)){
+			$mysqli = new mysqli($host, $login, $password, $basename);
+			if($mysqli){
 				return true;
 			}else{
 				return false;

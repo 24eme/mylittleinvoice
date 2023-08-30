@@ -72,7 +72,7 @@
 			     'footer_infos'=>$_POST['footer_infos']
 		     );
 		     $bd->insert($bd->prefix . 'invoices',$invoice);
-		     $invoice = $bd->get_results('SELECT * FROM ' . $bd->prefix . 'invoices WHERE id=LAST_INSERT_ID();');
+		     $invoice = $bd->get_results('SELECT * FROM ' . $bd->prefix . 'invoices ORDER BY id DESC LIMIT 1;');
 		     $_GET['id_invoice'] = $invoice[0]->id;
 		     if(!empty($_POST['convert_quote'])){
 			     $bd->update($bd->prefix . 'quotes', array('archived'=>'true','invoice'=>'true','invoice_number'=>$_GET['id_invoice']),array('id'=>$_POST['convert_quote']));
