@@ -106,6 +106,9 @@
 	        	<br style="clear:both;" />
 	        	</form>';
 		}elseif(!empty($_GET['step']) AND $_GET['step'] == '3' AND !empty($_POST['host'])){
+		  if (!function_exists('mysqli_connect')) {
+		    echo '<p class="login-box-msg">Erreur : php mysqli n\'est pas installé</p>';
+		  }else{
 			include('build/class.bdpoo.php');
 			$bd_test = new Bd;
 			try {
@@ -180,6 +183,7 @@
 			</form>
 			<?php
 			}
+		  }
 		}elseif(!empty($_GET['step']) AND $_GET['step'] == '2'){
 			?>
 			<form action="install.php?step=3" method="POST">
