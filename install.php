@@ -108,7 +108,8 @@
 		}elseif(!empty($_GET['step']) AND $_GET['step'] == '3' AND !empty($_POST['host'])){
 			include('build/class.bdpoo.php');
 			$bd_test = new Bd;
-			if(@$bd_test->test_connect($_POST['host'],$_POST['username'],$_POST['userpass'],$_POST['basename'])){
+			try {
+			  if(@$bd_test->test_connect($_POST['host'],$_POST['username'],$_POST['userpass'],$_POST['basename'])){
 				$bd_test->config($_POST['host'],$_POST['username'],$_POST['userpass'],$_POST['basename'],$_POST['prefix'],'option');
 				$prefix = $_POST['prefix'];
 				$test = $bd_test->get_results('SHOW TABLES LIKE "' . $prefix . 'customers"');
@@ -147,7 +148,10 @@
 				}
 				echo '<a href="install.php?step=4" class="btn btn-primary btn-block btn-flat pull-right">Continuer</a>
 				<br style="clear:both;" />';
-			}else{
+			  }else{
+			    throw Exception("connexion error ");
+			  }
+			}catch(Exception $e) {
 				?>
 			<form action="install.php?step=3" method="POST">
 				<p class="login-box-msg">Erreur lors de la connexion, veuillez vérifier vos identifiants : </p>
