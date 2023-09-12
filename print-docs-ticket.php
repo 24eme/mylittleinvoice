@@ -62,7 +62,7 @@
           <div class="col-xs-12">
             <h2 class="page-header">
               <?php 
-	                $logo = $bd->get_option('logo');
+	                $logo = $bd->get_option('logo', './uploads/logo.jpg');
 	                if(!empty($logo) AND $logo != '1'){
 		                echo '<img src="' . $logo .'" style="max-height:48px;max-width:48px;width:auto;height:auto;" />';
 	                }else{

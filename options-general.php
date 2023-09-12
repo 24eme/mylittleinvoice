@@ -90,7 +90,7 @@
 		                ?>
 	               <?php echo $lang['logo_actual'] ?> :
 	               <?php
-		               $logo = $bd->get_option('logo');
+		               $logo = $bd->get_option('logo', './uploads/logo.jpg');
 		               if(!empty($logo) and $logo != '1'){
 			               echo '<img src="' . $logo . '" class="pull-right" style="vertical-align:middle;" />';
 		               }else{
@@ -135,7 +135,7 @@
 	                  </thead>
 	                  <tbody>
 		                  <?php
-			                  @$pt = unserialize($bd->get_option('products_type'));
+			                  @$pt = unserialize($bd->get_option('products_type', 'a:1:{i:0;a:5:{s:3:"qty";s:1:"0";s:3:"ref";s:4:"TEST";s:11:"description";s:4:"test";s:5:"price";s:1:"1";s:5:"taxes";s:1:"1";}}'));
 			                  if(!empty($pt) AND is_array($pt)){
 				                  foreach($pt as $p){
 					                  echo '<tr><td><input type="text" name="qty[]" placeholder="' . $lang['quantity'] . '" value="' . $p['qty'] . '"></td><td><input type="text" name="ref[]" placeholder="' . $lang['reference'] . '" value="' . $p['ref'] . '"></td><td><input type="text" name="description[]" placeholder="' . $lang['description'] . '" value="' . $p['description'] . '"></td><td><input type="text" name="price[]" placeholder="' . $lang['price'] . '" value="' . $p['price'] . '"></td><td><input type="text" name="taxes[]" placeholder="' . $lang['taxes'] . '" value="' . $p['taxes'] . '"></td></tr>';

@@ -71,8 +71,8 @@
         <div class="row">
           <div class="col-xs-12">
             <h2 class="page-header">
-              <?php 
-	                $logo = $bd->get_option('logo');
+              <?php
+	                $logo = $bd->get_option('logo', './uploads/logo.jpg');
 	                if(!empty($logo) AND $logo != '1'){
 		                echo '<img src="' . $logo .'" style="max-height:48px;max-width:48px;width:auto;height:auto;" />';
 	                }else{
@@ -132,8 +132,8 @@
 			                    	?>
 			                    	</tbody></table></div></div></section><div class="bottom"><div class="row"><div class="col-xs-6"><p class="lead">Méthodes de règlement :</p><img src="../../dist/img/credit/visa.png" alt="Visa"/><img src="../../dist/img/credit/mastercard.png" alt="Mastercard"/><img src="../../dist/img/credit/american-express.png" alt="American Express"/><img src="../../dist/img/credit/paypal2.png" alt="Paypal"/><div class="text-muted well well-sm no-shadow" style="margin-top: 10px;"><?php echo $results->infos; ?></div></div><div class="col-xs-6"><p class="lead">Montant total :</p><div class="table-responsive"><table class="table"><tr><th style="width:50%">Sous-total HT:</th><td class="subtotal"></td></tr><tr><th>TVA</th><td class="total_taxes"></td></tr><tr><th>Total:</th><td class="totals"></td></tr></table></div></div></div><hr /><span class="invoice_footer editable text"><?php echo $results->footer_infos; ?></span></div></div></div><div class="page"><div class="wrapper"><section class="invoice"><div class="row"><div class="col-xs-12">
             <h2 class="page-header">
-              <?php 
-	                $logo = $bd->get_option('logo');
+              <?php
+	                $logo = $bd->get_option('logo', './uploads/logo.jpg');
 	                if(!empty($logo) AND $logo != '1'){
 		                echo '<img src="' . $logo .'" style="max-height:48px;max-width:48px;width:auto;height:auto;" />';
 	                }else{

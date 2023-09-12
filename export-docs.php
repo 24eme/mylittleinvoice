@@ -35,11 +35,11 @@ include('config.php');
 						     'Mail');
 						     $results = new stdClass;
 						     $results->id = '00000';
-	     } 
-	     
+	     }
+
 	     // Chargement des infos vendeur
 	     $entreprise = $bd->get_results('SELECT * FROM ' . $bd->prefix . 'options WHERE option_name = "entreprise_contact"');
-	     $entreprise = unserialize($entreprise[0]->option_value);
+	     $entreprise = is_array($entreprise)  && isset($entreprise[0]) ? unserialize($entreprise[0]->option_value) : array('name' => 'test');
 class PDF extends FPDF
 {
 
@@ -111,7 +111,7 @@ function Header()
     // Logo
     global $bd;
     $this->SetLineWidth('0.1');
-    $logo = $bd->get_option('logo');
+    $logo = $bd->get_option('logo', './uploads/logo.jpg');
     $info_logo = getimagesize($logo);
     $w = $info_logo[0];
     $h = $info_logo[1];

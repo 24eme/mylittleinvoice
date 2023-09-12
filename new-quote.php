@@ -109,7 +109,7 @@
 		        	</thead>
 					<tbody>
 						<?php
-							$pt = unserialize($bd->get_option('products_type'));
+							$pt = unserialize($bd->get_option('products_type', 'a:1:{i:0;a:5:{s:3:"qty";s:1:"0";s:3:"ref";s:4:"TEST";s:11:"description";s:4:"test";s:5:"price";s:1:"1";s:5:"taxes";s:1:"1";}}'));
 							foreach($pt as $key => $p){
 								$taxes = $p['price']*($p['taxes']/100);           
 								$total = ($taxes+$p['price'])*$p['qty'];
@@ -176,21 +176,21 @@
         </section>
 
         <div class="pad margin no-print">
-          <div class="callout callout-info" style="margin-bottom: 0!important;">												
+          <div class="callout callout-info" style="margin-bottom: 0!important;">
             <h4><i class="fa fa-info"></i> <?php echo $lang['edit_quote_title']; ?>:</h4>
             <?php echo $lang['edit_quote_text']; ?>
           </div>
         </div>
 
-       
+
        <!-- Main content -->
         <section class="invoice">
           <!-- title row -->
           <div class="row">
             <div class="col-xs-12">
               <h2 class="page-header">
-                <?php 
-	                $logo = $bd->get_option('logo');
+                <?php
+	                $logo = $bd->get_option('logo', './uploads/logo.jpg');
 	                if(!empty($logo) AND $logo != '1'){
 		                echo '<img src="' . $logo .'" style="max-height:48px;max-width:48px;width:auto;height:auto;" />';
 	                }else{
