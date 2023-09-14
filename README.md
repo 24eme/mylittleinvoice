@@ -36,6 +36,7 @@ Pour installer et utiliser MyLittleInvoice, vous aurez besoin coté serveur :
 
  - Mysql 5.5 min
  - PHP 5 min
+ - php-mysql (connecteur mysqli)
  - Apache2
 
 Pour le coté client, les navigateurs courant en 2015 fonctionnent parfaitement : Firefox, Google Chrome, Safari, Internet Explorer
