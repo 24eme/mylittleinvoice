@@ -345,6 +345,7 @@ if (($type == "Syndicat") || ($type == "EPAD-CCAS") || ($type == "ehpad"))
 	{
 		$cotisation = $cotis_type_3_2;
 	}
+    if (isset($tab[$insee])) {
         if (($tab[$insee]['adhvs']+$tab[$insee]['adhatd']) == 0)
         {
                 $cotisation_new = $cotisation;
@@ -360,6 +361,7 @@ if (($type == "Syndicat") || ($type == "EPAD-CCAS") || ($type == "ehpad"))
 		$cotisation_new = ($tab[$insee]['adhvs'] + $tab[$insee]['adhatd']) + (( $cotisation - ($tab[$insee]['adhvs'] + $tab[$insee]['adhatd'])) * $var_hausse); 
 		$lissage_haut = ($cotisation - ($tab[$insee]['adhvs'] + $tab[$insee]['adhatd'])) * $var_hausse;
 	}
+    }
 	$texte1 = "Selon conditions tarifaires et nombre d'ETP, Équivalent Temps Plein de la collectivité";
 }
 
