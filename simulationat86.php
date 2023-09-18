@@ -33,7 +33,7 @@ global $lang;
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-body">
-				
+<pre>
 <?php
 $name_fac=$name_facturation;
 $ligne_article=0;
@@ -243,10 +243,10 @@ if( file_exists ($ficrecap)){
 }
 
 // On initialise la première ligne d'entête du fichier d'export
-$fp = fopen ("$ficlog","a+"); 
-$chaine="Code Adhérent|Compte|Adresse|CP|Commune|Date Facture|Date Paiement|Montant Total|Fichier pdf|Assigné à|Type Ligne|Groupe|Désignation|Descriptif|Qté|PU|QtéxPU|Total Groupe\r\n"; 
+$fp = fopen ("$ficlog","a+");
+$chaine="Code Adhérent|Compte|Adresse|CP|Commune|Date Facture|Date Paiement|Montant Total|Fichier pdf|Assigné à|Type Ligne|Groupe|Désignation|Descriptif|Qté|PU|QtéxPU|Total Groupe\r\n";
 // On écrit dans le fichier d'export la chaine
-$ligne = fputs($fp,iconv("UTF-8", "WINDOWS-1252", $chaine)); 
+$ligne = fputs($fp,iconv("UTF-8", "WINDOWS-1252", $chaine));
 fclose($fp);
 
 mysqli_close($link);
@@ -369,11 +369,11 @@ if (($type == "Syndicat") || ($type == "EPAD-CCAS") || ($type == "ehpad"))
 $order = array("\r\n", "\n", "\r");
 $replace = '';
 $texte1 = str_replace($order, $replace, $texte1);
-$texte0 = "Cotisation d'adhésion AT86";	
-$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Adhésion obligatoire pour bénéficier des services de l'AT86")."|".iconv("UTF-8", "WINDOWS-1252", $texte1)."|1|".number_format($cotisation_new,2,'.','')."|".number_format($cotisation_new,2,'.','')."|";
+$texte0 = "Cotisation d'adhésion AT86";
+$phase2[$ligne_article]="A|".$texte0."|Adhésion obligatoire pour bénéficier des services de l'AT86|".$texte1."|1|".number_format($cotisation_new,2,'.','')."|".number_format($cotisation_new,2,'.','')."|";
 $ligne_article = $ligne_article + 1;
 
-$phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total Adhésion")."|||||".number_format($cotisation_new,2,'.','');
+$phase2[$ligne_article]="G|".$texte0."|Total Adhésion|||||".number_format($cotisation_new,2,'.','');
 $ligne_article = $ligne_article + 1;
 
 $cotisation = $cotisation_new ;
@@ -411,31 +411,31 @@ if ($s1adh == "adhesion_oui")
 	$texte0 = "Assistance technique Collectivités";
     if ($s1nbpc > 0)
 	{
-		$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Poste de travail")."|".iconv("UTF-8", "WINDOWS-1252","Forfait $s1_uc_mat EUR par poste")."|$s1nbpc|$s1_uc_mat|".$s1nbpc*$s1_uc_mat."|";
+		$phase2[$ligne_article]="A|".$texte0."|Poste de travail|Forfait $s1_uc_mat EUR par poste|$s1nbpc|$s1_uc_mat|".$s1nbpc*$s1_uc_mat."|";
 		$ligne_article = $ligne_article + 1;
 	}
 	if ($s1nbpcsec > 0)
 	{
-		$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Pack Antivirus")."|".iconv("UTF-8", "WINDOWS-1252","Forfait $s1_uc_sec EUR par pack Antivirus")."|$s1nbpcsec|$s1_uc_sec|".$s1nbpcsec*$s1_uc_sec."|";
+		$phase2[$ligne_article]="A|".$texte0."|Pack Antivirus|Forfait $s1_uc_sec EUR par pack Antivirus|$s1nbpcsec|$s1_uc_sec|".$s1nbpcsec*$s1_uc_sec."|";
 		$ligne_article = $ligne_article + 1;
 	}
         if ($s1nbserv > 0)
 	{
-		$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Serveur")."|".iconv("UTF-8", "WINDOWS-1252","Forfait $s1_serv_mat EUR par serveur")."|$s1nbserv|$s1_serv_mat|".$s1nbserv*$s1_serv_mat."|";
+		$phase2[$ligne_article]="A|".$texte0."|Serveur|Forfait $s1_serv_mat EUR par serveur|$s1nbserv|$s1_serv_mat|".$s1nbserv*$s1_serv_mat."|";
 		$ligne_article = $ligne_article + 1;
 	}
         if ($utmcol > 0)
 	{
-		$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","UTM (Sécurisation accès réseau)")."|".iconv("UTF-8", "WINDOWS-1252","Forfait $sx_utm EUR par UTM")."|$utmcol|$sx_utm|".$utmcol*$sx_utm."|";
+		$phase2[$ligne_article]="A|".$texte0."|UTM (Sécurisation accès réseau)|Forfait $sx_utm EUR par UTM|$utmcol|$sx_utm|".$utmcol*$sx_utm."|";
 		$ligne_article = $ligne_article + 1;
 	}
 	if ($quota_teles_u > $quota_teles_q)
 	{
-		$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Service 1 - Dépassement de télé-sauvegarde")."|".iconv("UTF-8", "WINDOWS-1252","$s1_uc_teles EUR par tranche de 5 Go (Consommation de "). ($quota_teles_u/1000) .iconv("UTF-8", "WINDOWS-1252"," Go sur "). ($quota_teles_q/1000) .iconv("UTF-8", "WINDOWS-1252"," Go autorisés)")."|$telesnb|$s1_uc_teles|".$telesauvegarde."|";
+		$phase2[$ligne_article]="A|".$texte0."|Service 1 - Dépassement de télé-sauvegarde|$s1_uc_teles EUR par tranche de 5 Go (Consommation de ". ($quota_teles_u/1000)." Go sur ". ($quota_teles_q/1000)." Go autorisés)|$telesnb|$s1_uc_teles|".$telesauvegarde."|";
 		$ligne_article = $ligne_article + 1;
 	}
-	$phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total du Service")."|||||$service1";
-	$ligne_article = $ligne_article + 1;	
+	$phase2[$ligne_article]="G|".$texte0."|Total du Service|||||$service1";
+	$ligne_article = $ligne_article + 1;
 }
 //*************************************
 
@@ -462,22 +462,22 @@ if ($s2adh == "adhesion_oui")
     if ($s2nbclas > 0) {
         $calrems21 = 0;
 	$calrems21 = $s2_mat * $s2nbclas ;
-        $phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Gestion du parc informatique")."|".iconv("UTF-8", "WINDOWS-1252","Forfait de $s2_mat EUR par classe en mode Poste à Poste")."|$s2nbclas|$s2_mat|$calrems21|";
+        $phase2[$ligne_article]="A|".$texte0."|Gestion du parc informatique|Forfait de $s2_mat EUR par classe en mode Poste à Poste|$s2nbclas|$s2_mat|$calrems21|";
 		$ligne_article = $ligne_article + 1;
     }
     if ($s2nbclassd > 0) {
         $calrems22 = 0;
 	$calrems22 = $s2_mat * $s2nbclassd ;
-        $phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Gestion du parc informatique")."|".iconv("UTF-8", "WINDOWS-1252","Forfait de $s2_mat EUR par classe avec Serveur dédié")."|$s2nbclassd|$s2_mat|$calrems22|";
+        $phase2[$ligne_article]="A|".$texte0."|Gestion du parc informatique|Forfait de $s2_mat EUR par classe avec Serveur dédié|$s2nbclassd|$s2_mat|$calrems22|";
         $ligne_article = $ligne_article + 1;
     }
     if ($utmeco > 0)
     {
-            $phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","UTM (Sécurisation accès réseau)")."|".iconv("UTF-8", "WINDOWS-1252","Forfait $sx_utm EUR par UTM")."|$utmeco|$sx_utm|".$utmeco*$sx_utm."|";
+            $phase2[$ligne_article]="A|".$texte0."|UTM (Sécurisation accès réseau)|Forfait $sx_utm EUR par UTM|$utmeco|$sx_utm|".$utmeco*$sx_utm."|";
             $ligne_article = $ligne_article + 1;
     }
 
-    $phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total du Service")."|||||$service2";
+    $phase2[$ligne_article]="G|".$texte0."|Total du Service|||||$service2";
     $ligne_article = $ligne_article + 1;
 }
 //*************************************
@@ -544,15 +544,15 @@ if ($s3metier == "adhesion_oui")
 	$texte0 = "Assistance aux logiciels métiers";
 	$s3desig = explode("\n", $s3metierdesignation);
 
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252", $s3desig[0])."|".iconv("UTF-8", "WINDOWS-1252", $s3desig[1])."|$service3metierqte|$service3metierunit|$service3metier|";
+	$phase2[$ligne_article]="A|".$texte0."|".$s3desig[0]."|".$s3desig[1]."|$service3metierqte|$service3metierunit|$service3metier|";
 	$ligne_article = $ligne_article + 1;
 
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Accompagnement des utilisateurs aux logiciels métiers")."|".iconv("UTF-8", "WINDOWS-1252","Accompagnement de $numconts3mu usager(s)")."|$numconts3mu|$s3_metier_user|". $s3_metier_user*$numconts3mu ."|";
+	$phase2[$ligne_article]="A|".$texte0."|Accompagnement des utilisateurs aux logiciels métiers|Accompagnement de $numconts3mu usager(s)|$numconts3mu|$s3_metier_user|". $s3_metier_user*$numconts3mu ."|";
 	$ligne_article = $ligne_article + 1;
-	
+
 	$service3metier = $service3metier + ($s3_metier_user*$numconts3mu);
 
-	$phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total du Service")."|||||$service3metier";
+	$phase2[$ligne_article]="G|".$texte0."|Total du Service|||||$service3metier";
 	$ligne_article = $ligne_article + 1;
 	
 }
@@ -576,15 +576,15 @@ if ($s3metier == "adhesion_partielle")
 //*************************************	
 	$s3desig = explode("\n", $s3metierdesignation);
 	$texte0 = "Assistance aux logiciels métiers";
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252", $s3desig[0])."|".iconv("UTF-8", "WINDOWS-1252", $s3desig[1])."|$service3metierqte|$service3metierunit|$service3metier|";
+	$phase2[$ligne_article]="A|".$texte0."|".$s3desig[0]."|".$s3desig[1]."|$service3metierqte|$service3metierunit|$service3metier|";
 	$ligne_article = $ligne_article + 1;
 
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Logiciels métiers - Accompagnement des utilisateurs")."|".iconv("UTF-8", "WINDOWS-1252","Accompagnement de $numconts3mu usager(s)")."|$numconts3mu|$s3_metier_user|". $s3_metier_user*$numconts3mu ."|";
+	$phase2[$ligne_article]="A|".$texte0."|Logiciels métiers - Accompagnement des utilisateurs|Accompagnement de $numconts3mu usager(s)|$numconts3mu|$s3_metier_user|". $s3_metier_user*$numconts3mu ."|";
     $ligne_article = $ligne_article + 1;
 
 	$service3metier = $service3metier + ($s3_metier_user*$numconts3mu);
-	
-	$phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total du Service")."|||||$service3metier";
+
+	$phase2[$ligne_article]="G|".$texte0."|Total du Service|||||$service3metier";
 	$ligne_article = $ligne_article + 1;
 }
 //*************************************
@@ -643,15 +643,15 @@ if ($s3demat == "adhesion_oui")
     $replace = '';
     $s3desigact = str_replace($order, $replace, $s3dematdesignation);
     $texte0 = "Tiers de télétransmissions";
-    $phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Dématérialisation des procédures")."|".iconv("UTF-8", "WINDOWS-1252", $s3desigact)."|$service3dematqte|$service3dematunit|$service3demat|";
+    $phase2[$ligne_article]="A|".$texte0."|Dématérialisation des procédures|".$s3desigact."|$service3dematqte|$service3dematunit|$service3demat|";
     $ligne_article = $ligne_article + 1;
 
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Dématérialisation des procédures - Accompagnement des utilisateurs")."|".iconv("UTF-8", "WINDOWS-1252","Accompagnement de $numconts3deu usager(s)|$numconts3deu")."|$s3_demat_user|". $s3_demat_user*$numconts3deu ."|";
+	$phase2[$ligne_article]="A|".$texte0."|Dématérialisation des procédures - Accompagnement des utilisateurs|Accompagnement de $numconts3deu usager(s)|$numconts3deu|$s3_demat_user|". $s3_demat_user*$numconts3deu ."|";
     $ligne_article = $ligne_article + 1;
 
 	//Cout global du S3 DEMAT
 	$service3demat = $service3demat + ($s3_demat_user*$numconts3deu);
-    $phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total du Service")."|||||$service3demat";
+    $phase2[$ligne_article]="G|".$texte0."|Total du Service|||||$service3demat";
     $ligne_article = $ligne_article + 1;
 }
 //*************************************
@@ -709,19 +709,19 @@ if (($s3demmp == "adhesion_s4_mp_oui") || ($s3demmp == "adhesion_s4_mp_rattache"
 //Lignes de facturation adhésion pour intégration dans le CRM
 //*************************************
 	$texte0 = "Dématérialisation des marchés publics";
-    $phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Dématérialisation des Marchés Publics")."|".iconv("UTF-8", "WINDOWS-1252",$s3mpdesignation)."|$service3mpqte|$service3mpunit|$service3mp|";
+    $phase2[$ligne_article]="A|".$texte0."|Dématérialisation des Marchés Publics|".$s3mpdesignation."|$service3mpqte|$service3mpunit|$service3mp|";
     $ligne_article = $ligne_article + 1;
 
-    $phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Dématérialisation des Marchés Publics - Accompagnement des utilisateurs")."|".iconv("UTF-8", "WINDOWS-1252","Accompagnement de $numconts3mpu usager(s)")."|$numconts3mpu|$s3_mp_user|". $s3_mp_user*$numconts3mpu ."|";
+    $phase2[$ligne_article]="A|".$texte0."|Dématérialisation des Marchés Publics - Accompagnement des utilisateurs|Accompagnement de $numconts3mpu usager(s)|$numconts3mpu|$s3_mp_user|". $s3_mp_user*$numconts3mpu ."|";
     $ligne_article = $ligne_article + 1;
 
 	//Cout global du S3 MP
 	$service3mp = $service3mp + ($s3_mp_user*$numconts3mpu);
-    $phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total du Service")."|||||$service3mp";
+    $phase2[$ligne_article]="G|".$texte0."|Total du Service|||||$service3mp";
     $ligne_article = $ligne_article + 1;
 }
 //*************************************
- 
+
 //*************************************
 // Site Internet
 //*************************************
@@ -777,15 +777,15 @@ if ($s3siint == "adhesion_oui")
 	$replace = '';
 	$s3desigsi = str_replace($order, $replace, $s3sidesignation);
 	$texte0 = "Sites internet abonnement";
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Site Internet")."|".iconv("UTF-8", "WINDOWS-1252", $s3desigsi)."|$service3siqte|$service3siunit|$service3si|";
+	$phase2[$ligne_article]="A|".$texte0."|Site Internet|".$s3desigsi."|$service3siqte|$service3siunit|$service3si|";
 	$ligne_article = $ligne_article + 1;
 
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Site Internet - Accompagnement des utilisateurs")."|".iconv("UTF-8", "WINDOWS-1252","Accompagnement de $numconts3siu usager(s) à l'ensemble des fonctionnalités")."|$numconts3siu|$s3_si_user|". $s3_si_user*$numconts3siu ."|";
+	$phase2[$ligne_article]="A|".$texte0."|Site Internet - Accompagnement des utilisateurs|Accompagnement de $numconts3siu usager(s) à l'ensemble des fonctionnalités|$numconts3siu|$s3_si_user|". $s3_si_user*$numconts3siu ."|";
     $ligne_article = $ligne_article + 1;
 
 	//Cout global du S3 SI
 	$service3si = $service3si + ($s3_si_user*$numconts3siu);
-	$phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total du Service")."|||||$service3si";
+	$phase2[$ligne_article]="G|".$texte0."|Total du Service|||||$service3si";
 	$ligne_article = $ligne_article + 1;
 }
 //*************************************
@@ -845,15 +845,15 @@ if ($s3sve == "adhesion_oui")
 	$replace = '';
 	$s3desigsve = str_replace($order, $replace, $s3svedesignation);
 	$texte0 = "Saisine par voie électronique (SVE)";
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Saisine par voie électronique")."|".iconv("UTF-8", "WINDOWS-1252", $s3desigsve)."|$service3sveqte|$service3sveunit|$service3sve|";
+	$phase2[$ligne_article]="A|".$texte0."|Saisine par voie électronique|".$s3desigsve."|$service3sveqte|$service3sveunit|$service3sve|";
 	$ligne_article = $ligne_article + 1;
 
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","SVE - Accompagnement des utilisateurs")."|".iconv("UTF-8", "WINDOWS-1252","Accompagnement de $numconts3sveu usager(s)")."|$numconts3sveu|$s3_sve_user|". $s3_sve_user*$numconts3sveu ."|";
+	$phase2[$ligne_article]="A|".$texte0."|SVE - Accompagnement des utilisateurs|Accompagnement de $numconts3sveu usager(s)|$numconts3sveu|$s3_sve_user|". $s3_sve_user*$numconts3sveu ."|";
     $ligne_article = $ligne_article + 1;
 
 	//Cout global du S3 SI
 	$service3sve = $service3sve + ($s3_sve_user*$numconts3sveu);
-	$phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total du Service")."|||||$service3sve";
+	$phase2[$ligne_article]="G|".$texte0."|Total du Service|||||$service3sve";
 	$ligne_article = $ligne_article + 1;
 }
 //*************************************
@@ -915,12 +915,12 @@ if (($type <> 'Commune') && ($type <> 'Communaute communes'))
         $replace = '';
         $desigdpd = str_replace($order, $replace, $dpddesignation);
 	$texte0 = "Délégué à la protection des données personnelles";
-        $phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Délégué à la protection des Données")."|".iconv("UTF-8", "WINDOWS-1252", $desigdpd)."|$dpdqte|$dpdunit|$cotisationdpd|";
+        $phase2[$ligne_article]="A|".$texte0."|Délégué à la protection des Données|".$desigdpd."|$dpdqte|$dpdunit|$cotisationdpd|";
         $ligne_article = $ligne_article + 1;
 
         //Cout global du Service DPD
         $servicedpd = $servicedpd;
-        $phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total du Service")."|||||$cotisationdpd";
+        $phase2[$ligne_article]="G|".$texte0."|Total du Service|||||$cotisationdpd";
         $ligne_article = $ligne_article + 1;
 }
 
@@ -946,7 +946,7 @@ if (($nb_lignes_dns-1) > 0)
 
 	$s3dnsdesig = explode("\n", $s3dnsdesignation);
 
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Nom de domaine")."|".iconv("UTF-8", "WINDOWS-1252", $s3dnsdesig[0])."|$service3dnsqte|$service3dnsunit|$service3dns|";
+	$phase2[$ligne_article]="A|".$texte0."|Nom de domaine|".$s3dnsdesig[0]."|$service3dnsqte|$service3dnsunit|$service3dns|";
 	$ligne_article = $ligne_article + 1;
 	$service3com = $service3com + $service3dns;
 }
@@ -960,28 +960,28 @@ if (($s3outcol == "adhesion_oui") || ($s3balvs == "Oui"))
 			// Zimbra 1Go
 			if ($numz1 > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outils Collaboratifs")."|".iconv("UTF-8", "WINDOWS-1252","Boites courriels Zimbra type 1Go")."|$numz1|$s3_outcol_bal_1go|".($s3_outcol_bal_1go * $numz1)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outils Collaboratifs|Boites courriels Zimbra type 1Go|$numz1|$s3_outcol_bal_1go|".($s3_outcol_bal_1go * $numz1)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numz1 * $s3_outcol_bal_1go);
 			}
 			// Zimbra 5Go
 			if ($numz5 > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outils Collaboratifs")."|".iconv("UTF-8", "WINDOWS-1252","Boites courriels Zimbra type 5Go")."|$numz5|$s3_outcol_bal_5go|".($s3_outcol_bal_5go * $numz5)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outils Collaboratifs|Boites courriels Zimbra type 5Go|$numz5|$s3_outcol_bal_5go|".($s3_outcol_bal_5go * $numz5)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numz5 * $s3_outcol_bal_5go);
 			}
 			// Zimbra 10Go
 			if ($numz10 > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outils Collaboratifs")."|".iconv("UTF-8", "WINDOWS-1252","Boites courriels Zimbra type 10Go")."|$numz10|$s3_outcol_bal_10go|".($s3_outcol_bal_10go * $numz10)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outils Collaboratifs|Boites courriels Zimbra type 10Go|$numz10|$s3_outcol_bal_10go|".($s3_outcol_bal_10go * $numz10)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numz10 * $s3_outcol_bal_10go);
 			}
 			// Zimbra 10Go Contact
 			if ($numz10c > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outils Collaboratifs")."|".iconv("UTF-8", "WINDOWS-1252","Dépassement boite institutionnelle Zimbra type 10Go")."|$numz10c|$s3_outcol_depass|".($s3_outcol_depass * $numz10c)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outils Collaboratifs|Dépassement boite institutionnelle Zimbra type 10Go|$numz10c|$s3_outcol_depass|".($s3_outcol_depass * $numz10c)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numz10c * $s3_outcol_depass);
 			}
@@ -992,74 +992,74 @@ if (($s3outcol == "adhesion_oui") || ($s3balvs == "Oui"))
 			//BAL 2Go
                         if ($numb2 > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outil de Messagerie BALs simples")."|".iconv("UTF-8", "WINDOWS-1252","Boites courriels simples type 2Go")."|$numb2|$s3_bal_2go|".($s3_bal_2go * $numb2)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outil de Messagerie BALs simples|Boites courriels simples type 2Go|$numb2|$s3_bal_2go|".($s3_bal_2go * $numb2)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numb2 * $s3_bal_2go);
 			}
 			//BAL 5Go
 			if ($numb5 > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outil de Messagerie BALs simples")."|".iconv("UTF-8", "WINDOWS-1252","Boites courriels simples type 5Go")."|$numb5|$s3_bal_5go|".($s3_bal_5go * $numb5)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outil de Messagerie BALs simples|Boites courriels simples type 5Go|$numb5|$s3_bal_5go|".($s3_bal_5go * $numb5)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numb5 * $s3_bal_5go);
 			}
 			//BAL 5Go Contact
 			if ($numb5c > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outil de Messagerie BALs simples")."|".iconv("UTF-8", "WINDOWS-1252","Dépassement boite institutionnelle type 5Go")."|$numb5c|$s3_bal_depass|".($s3_bal_depass * $numb5c)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outil de Messagerie BALs simples|Dépassement boite institutionnelle type 5Go|$numb5c|$s3_bal_depass|".($s3_bal_depass * $numb5c)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numb5c * $s3_bal_depass);
 			}
 			//BAL 10Go
 			if ($numb10 > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outil de Messagerie BALs simples")."|".iconv("UTF-8", "WINDOWS-1252","Boites courriels simples type 10Go")."|$numb10|$s3_bal_10go|".($s3_bal_10go * $numb10)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outil de Messagerie BALs simples|Boites courriels simples type 10Go|$numb10|$s3_bal_10go|".($s3_bal_10go * $numb10)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numb10 * $s3_bal_10go);
 			}
 			//BAL 10Go Contact
 			if ($numb10c > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outil de Messagerie BALs simples")."|".iconv("UTF-8", "WINDOWS-1252","Dépassement boite institutionnelle type 10Go")."|$numb10c|".($s3_bal_depass * 2)."|".($s3_bal_depass * $numb10c * 2)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outil de Messagerie BALs simples|Dépassement boite institutionnelle type 10Go|$numb10c|".($s3_bal_depass * 2)."|".($s3_bal_depass * $numb10c * 2)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numb10c * $s3_bal_depass * 2);
 			}
 			//BAL 15Go
 			if ($numb15 > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outil de Messagerie BALs simples")."|".iconv("UTF-8", "WINDOWS-1252","Boites courriels simples type 15Go")."|$numb15|$s3_bal_15go|".($s3_bal_15go * $numb15)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outil de Messagerie BALs simples|Boites courriels simples type 15Go|$numb15|$s3_bal_15go|".($s3_bal_15go * $numb15)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numb15 * $s3_bal_15go);
 			}
 			//BAL 15Go Contact
 			if ($numb15c > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outil de Messagerie BALs simples")."|".iconv("UTF-8", "WINDOWS-1252","Dépassement boite institutionnelle type 15Go")."|$numb15c|".($s3_bal_depass * 3)."|".($s3_bal_depass * $numb15c * 3)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outil de Messagerie BALs simples|Dépassement boite institutionnelle type 15Go|$numb15c|".($s3_bal_depass * 3)."|".($s3_bal_depass * $numb15c * 3)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numb15c * $s3_bal_depass * 3);
 			}
 			//BAL 20Go
 			if ($numb20 > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outil de Messagerie BALs simples")."|".iconv("UTF-8", "WINDOWS-1252","Boites courriels simples type 20Go")."|$numb20|$s3_bal_20go|".($s3_bal_20go * $numb20)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outil de Messagerie BALs simples|Boites courriels simples type 20Go|$numb20|$s3_bal_20go|".($s3_bal_20go * $numb20)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numb20 * $s3_bal_20go);
-			}			
+			}
 			//BAL 20Go Contact
 			if ($numb20c > 0)
 			{
-				$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Outil de Messagerie BALs simples")."|".iconv("UTF-8", "WINDOWS-1252","Dépassement boite institutionnelle type 20Go")."|$numb20c|".($s3_bal_depass * 4)."|".($s3_bal_depass * $numb20c * 4)."|";
+				$phase2[$ligne_article]="A|".$texte0."|Outil de Messagerie BALs simples|Dépassement boite institutionnelle type 20Go|$numb20c|".($s3_bal_depass * 4)."|".($s3_bal_depass * $numb20c * 4)."|";
 				$ligne_article = $ligne_article + 1;
 				$service3com = $service3com + ($numb20c * $s3_bal_depass * 4);
-			}			
-		}	
+			}
+		}
 }
 //*************************************
 // Total du Groupement Messagerie et DNS
 //*************************************
 if ($service3com > 0)
 {
-	$phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Total du Service")."|||||$service3com";
+	$phase2[$ligne_article]="G|".$texte0."|Total du Service|||||$service3com";
 	$ligne_article = $ligne_article + 1;
 }
 //*************************************
@@ -1071,10 +1071,10 @@ if ($regul_mon <> 0)
 {
 	$texte0 = "Régularisation";
 	//Lignes de facturation REGUL pour intégration dans le CRM
-	$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Régularisation Facturation")."|".iconv("UTF-8", "WINDOWS-1252","$regul_txt")."|1|$regul_mon|$regul_mon|";
+	$phase2[$ligne_article]="A|".$texte0."|Régularisation Facturation|$regul_txt|1|$regul_mon|$regul_mon|";
 	$ligne_article = $ligne_article + 1;
 
-	$phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252",$texte0)."|".iconv("UTF-8", "WINDOWS-1252","Régularisation Facturation")."|||||$regul_mon";
+	$phase2[$ligne_article]="G|".$texte0."|Régularisation Facturation|||||$regul_mon";
 	$ligne_article = $ligne_article + 1;
 }
 else
@@ -1094,7 +1094,7 @@ $ligne_article = $ligne_article + 1;
 
 $fprecap = fopen ("$ficrecap","a+"); 
 $chainerecap=$insee."|".$compte."|".$type."|".number_format($cotisation,2,'.','')."|".number_format($service1,2,'.','')."|".number_format($service2,2,'.','')."|".number_format($service3metier,2,'.','')."|".number_format($service3demat,2,'.','')."|".number_format($service3mp,2,'.','')."|".number_format($service3si,2,'.','')."|".number_format($service3usersmescol,2,'.','')."|".number_format($service3sve,2,'.','')."|".number_format($cotisationdpd,2,'.','')."|".number_format($service3dns,2,'.','')."|".number_format($service4bal,2,'.','')."|".number_format($regul_mon,2,'.','')."|".number_format($totalvs,2,'.','');
-$lignerecap = fputs($fprecap,$chainerecap); 
+$lignerecap = fputs($fprecap,iconv("UTF-8", "WINDOWS-1252", $chainerecap));
 fclose($fprecap);
 
 // On détermine la date du jour de la facturation
@@ -1113,16 +1113,17 @@ $adresse1 = str_replace($order, $replace, $str);
 $fp2 = fopen ("$ficlog","a+"); 
 for ($calcul2=0; $calcul2<$ligne_article; $calcul2++)
 {
-	$chaine2="$code_adh|$compte|".iconv("UTF-8", "WINDOWS-1252", $adresse1)."|$cp|".iconv("UTF-8", "WINDOWS-1252", $commune)."|".$now->format( 'd-m-Y' )."|".$clone->format( 'd-m-Y' )."|$totalvs||1|$phase2[$calcul2]\r\n"; 
+	$chaine2="$code_adh|$compte|".$adresse1."|$cp|".$commune."|".$now->format( 'd-m-Y' )."|".$clone->format( 'd-m-Y' )."|$totalvs||1|$phase2[$calcul2]\r\n";
 	// On écrit dans le fichier d'export la chaine
-	$ligne2 = fputs($fp2,$chaine2); 
+    $ligne2 = fputs($fp2,iconv("UTF-8", "WINDOWS-1252", $chaine2));
 	echo $chaine2;
 }
 fclose($fp2);
 
 ?>
-<script type="text/javascript"> 
-  <!-- Début 
+</pre>
+<script type="text/javascript">
+  <!-- Début
      window.parent.opener.location.reload();
 	 self.close();
   // Fin --> 

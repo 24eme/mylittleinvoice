@@ -48,7 +48,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-body">
-				
+<pre>
 <?php
 $name_fac=$name_facturation;
 $ligne_article=0;
@@ -97,16 +97,16 @@ $num = mysqli_num_rows ($result);
 $i = 0;
 
 $name = mysqli_result($result,$i,"name");
-$code_adh = mysqli_result($result,$i,"numero_adherent_collectivite_c");		
+$code_adh = mysqli_result($result,$i,"numero_adherent_collectivite_c");
 $id = mysqli_result($result,$i,"id");
 $adhesion_vs = mysqli_result($result,$i,"adhesion_vs_c");
 $compte = mysqli_result($result,$i,"name");
 $insee = mysqli_result($result,$i,"numero_adherent_collectivite_c");
 $type = mysqli_result($result,$i,"account_type");
-$etablissement = utf8_encode(mysqli_result($result,$i,"nomcomplet_c"));
-$adresse1 = utf8_encode(mysqli_result($result,$i,"billing_address_street"));
+$etablissement = mysqli_result($result,$i,"nomcomplet_c");
+$adresse1 = mysqli_result($result,$i,"billing_address_street");
 $cp = mysqli_result($result,$i,"billing_address_postalcode");
-$commune = utf8_encode(mysqli_result($result,$i,"billing_address_city"));
+$commune = mysqli_result($result,$i,"billing_address_city");
 $tel = mysqli_result($result,$i,"phone_office");
 $fax = mysqli_result($result,$i,"phone_fax");
 $email = mysqli_result($result,$i,"email1");
@@ -127,10 +127,10 @@ $s3demmp = mysqli_result($result,$i,"adherant_demat_marches_publics_c");
 $s3demat = mysqli_result($result,$i,"contrat_demat_actes_c");
 $s3siint = mysqli_result($result,$i,"site_web_heberge_vs_c");
 $s3outcol = mysqli_result($result,$i,"outils_collab_c");
-$s3balvs = mysqli_result($result,$i,"bal_vs_c");				
+$s3balvs = mysqli_result($result,$i,"bal_vs_c");
 $s3afnic = mysqli_result($result,$i,"liste_dns_c");
 $s3bal = mysqli_result($result,$i,"afnic_balsup");
-$regul_txt = utf8_encode(mysqli_result($result,$i,"adherent_regul_def"));
+$regul_txt = mysqli_result($result,$i,"adherent_regul_def");
 $regul_mon = mysqli_result($result,$i,"adherent_regul_mon");
 $quota_teles_q = mysqli_result($result,$i,"quota_teles_q");
 $quota_teles_u = mysqli_result($result,$i,"quota_teles_u");
@@ -181,9 +181,9 @@ for($ii=0;$ii<$nbTotalLignes;$ii++){
 		$texte = str_replace($order, $replace, $texte);
                 $ligneTab[6]=str_replace(",",".",$ligneTab[6]);
 		$cotisation = $cotisation + $ligneTab[6];
-		$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252","Mission Instruction des autorisations Urbanisme")."|".iconv("UTF-8", "WINDOWS-1252",$texteA)."|".iconv("UTF-8", "WINDOWS-1252", $texte)."|$ligneTab[5]|$ligneTab[4]|$ligneTab[6]|";
+		$phase2[$ligne_article]="A|Mission Instruction des autorisations Urbanisme|$texteA|$texte|$ligneTab[5]|$ligneTab[4]|$ligneTab[6]|";
 		$ligne_article = $ligne_article + 1;
-	}	
+	}
 }
 
 //if ($type == 'Commune') {
@@ -206,7 +206,7 @@ for($ii=0;$ii<$nbTotalLignes;$ii++){
 //$phase2[$ligne_article]="A|".iconv("UTF-8", "WINDOWS-1252","Mission d\'instruction des autorisations d\'urbanisme")."|".iconv("UTF-8", "WINDOWS-1252","Dossier n°, Type, Demandeur,Date de proposition de décision")."|".iconv("UTF-8", "WINDOWS-1252", $texte)."|$quantite|$adhunit|$cotisation|";
 //$ligne_article = $ligne_article + 1;
 
-$phase2[$ligne_article]="G|".iconv("UTF-8", "WINDOWS-1252","Mission Instruction des autorisations Urbanisme")."|".iconv("UTF-8", "WINDOWS-1252","Total")."|||||$cotisation";
+$phase2[$ligne_article]="G|Mission Instruction des autorisations Urbanisme|Total|||||$cotisation";
 $ligne_article = $ligne_article + 1;
 //*************************************
 
@@ -221,7 +221,7 @@ $ligne_article = $ligne_article + 1;
 
 $fprecap = fopen ("$ficrecap","a+"); 
 $chainerecap=$insee."|".$compte."|".$type."|".number_format($cotisation,2,'.','');
-$lignerecap = fputs($fprecap,$chainerecap); 
+$lignerecap = fputs($fprecap,iconv("UTF-8", "WINDOWS-1252", $chainerecap));
 fclose($fprecap);
 
 // On détermine la date du jour de la facturation
@@ -240,16 +240,17 @@ $adresse1 = str_replace($order, $replace, $str);
 $fp2 = fopen ("$ficlog","a+"); 
 for ($calcul2=0; $calcul2<$ligne_article; $calcul2++)
 {
-	$chaine2="$code_adh|$compte|".iconv("UTF-8", "WINDOWS-1252", $adresse1)."|$cp|".iconv("UTF-8", "WINDOWS-1252", $commune)."|".$now->format( 'd-m-Y' )."|".$clone->format( 'd-m-Y' )."|$totalvs||1|$phase2[$calcul2]\r\n"; 
+	$chaine2="$code_adh|$compte|$adresse1|$cp|$commune|".$now->format( 'd-m-Y' )."|".$clone->format( 'd-m-Y' )."|$totalvs||1|$phase2[$calcul2]\r\n";
 	// On écrit dans le fichier d'export la chaine
-	$ligne2 = fputs($fp2,$chaine2); 
+	$ligne2 = fputs($fp2,iconv("UTF-8", "WINDOWS-1252", $chaine2));
 	echo $chaine2;
 }
 fclose($fp2);
 
 ?>
-<script type="text/javascript"> 
-  <!-- Début 
+</pre>
+<script type="text/javascript">
+  <!-- Début
      window.parent.opener.location.reload();
      self.close(); 
   // Fin --> 
