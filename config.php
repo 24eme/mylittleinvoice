@@ -52,11 +52,12 @@
 
 	$fichier = 'config/config.ini';
 	$tableauIni = parse_ini_file($fichier);
-	while (list($cles, $val) = each($tableauIni)) {
+	foreach($tableauIni as $cles => $val) {
                 global ${$cles};
 		//echo $key.' : '.$val."<br>";
 		${$cles} = $val;
 	}
 	$link = mysqli_connect($host,$login_grc,$password_grc,$base_grc) or die('Can\'t connect to MySQL');
+
 
 	include('include/login.php');

@@ -35,7 +35,7 @@
 
 	$fichier = 'config/confignp.ini';
 	$tableauIni = parse_ini_file($fichier);
-	while (list($cles, $val) = each($tableauIni)) {
+	foreach($tableauIni as $cles => $val) {
 		${$cles} = $val;
 	}
 	?>
@@ -353,6 +353,8 @@
 																	if ($cotisation < $cotis_plancher) {
 																		$cotisation = $cotis_plancher;
 																	}
+																	$tab[$insee]['adhvs'] = intval($tab[$insee]['adhvs']);
+																	$tab[$insee]['adhatd'] = intval($tab[$insee]['adhatd']);
 																	if ($cotisation < ($tab[$insee]['adhvs'] + $tab[$insee]['adhatd'])) {
 																		$cotisation_new = ($tab[$insee]['adhvs'] + $tab[$insee]['adhatd']) - ((($tab[$insee]['adhvs'] + $tab[$insee]['adhatd']) - $cotisation) * $var_baisse);
 																		$couleuradh = "green";
@@ -372,6 +374,8 @@
 																}
 																if ($type == "Communaute communes") {
 																	$cotisation = $cotis_type_2;
+																	$tab[$insee]['adhvs'] = intval($tab[$insee]['adhvs']);
+																	$tab[$insee]['adhatd'] = intval($tab[$insee]['adhatd']);
 																	if ($cotisation < ($tab[$insee]['adhvs'] + $tab[$insee]['adhatd'])) {
 																		$cotisation_new = ($tab[$insee]['adhvs'] + $tab[$insee]['adhatd']) - ((($tab[$insee]['adhvs'] + $tab[$insee]['adhatd']) - $cotisation) * $var_baisse);
 																		$couleuradh = "green";
@@ -404,6 +408,8 @@
 																	if ($nbagents > 30) {
 																		$cotisation = $cotis_type_3_2;
 																	}
+																	$tab[$insee]['adhvs'] = intval($tab[$insee]['adhvs']);
+																	$tab[$insee]['adhatd'] = intval($tab[$insee]['adhatd']);
 																	if ($cotisation < ($tab[$insee]['adhvs'] + $tab[$insee]['adhatd'])) {
 																		$cotisation_new = ($tab[$insee]['adhvs'] + $tab[$insee]['adhatd']) - ((($tab[$insee]['adhvs'] + $tab[$insee]['adhatd']) - $cotisation) * $var_baisse);
 																		$couleuradh = "green";
@@ -433,20 +439,24 @@
 
 																// On r�cup�re la cotisation n-1
 																$cotisationa = 0;
-																$fileanneea = $grc_config['at86']['path']."/txt/facturation" . $anneea . "-" . $insee . ".txt";
+                                                                $fileanneea = $grc_config['at86']['path']."/txt/facturation" . $anneea . "-" . $insee . ".txt";
                                                                 if (file_exists($fileanneea)) {
-																$contents = file_get_contents($fileanneea);
-																$pattern = preg_quote($searchfor, '/');
-																$pattern = "/^.*$pattern.*\$/m";
+                                                                    $contents = file_get_contents($fileanneea);
+                                                                    $pattern = '';
+                                                                    if (isset($searchfor) && $searchfor) {
+                                                                        $pattern = preg_quote($searchfor, '/');
+                                                                    }
+                                                                    $pattern = "/^.*$pattern.*\$/m";
 
-																if (preg_match_all($pattern, $contents, $matches)) {
-																	for ($mi = 0; $mi < sizeof($matches[0]); ++$mi) {
-																		$mip = explode("|", utf8_encode($matches[0][$mi]));
-																		if (($mip[11] == "Cotisation 2018") && ($mip[10] == "G")) {
-																			$cotisationa = number_format($mip[17], 2, '.', '');
-																		}
-																	}
-																}
+                                                                    if (preg_match_all($pattern, $contents, $matches)) {
+																	    for ($mi = 0; $mi < sizeof($matches[0]); ++$mi) {
+																		     $mip = explode("|", utf8_encode($matches[0][$mi]));
+																		     if (($mip[11] == "Cotisation 2018") && ($mip[10] == "G")) {
+																			     $cotisationa = number_format($mip[17], 2, '.', '');
+																		     }
+																	    }
+																    }
+                                                                }
 
 																//*******************************************
 																// Service Assistance Technique Collectivit�s

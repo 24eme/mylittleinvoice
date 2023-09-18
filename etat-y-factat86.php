@@ -115,18 +115,18 @@ while ( $i < count($ListFiles))
 {
 	$file = $dir.$ListFiles[$i];
 	$mip = array();
-	$Radhesion = "";
-	$Rs1="";
-	$Rs2="";
-	$Rs3MET="";
-	$Rs3DEMAT="";
-	$Rs2MP="";
-	$Rs3SI="";
-	$Rs3MESS="";
-	$Rs3SVE="";
-	$RDPD="";
-	$Rregul="";
-	$Rtotal="";
+	$Radhesion = 0;
+	$Rs1 = 0;
+	$Rs2 = 0;
+	$Rs3MET = 0;
+	$Rs3DEMAT = 0;
+	$Rs2MP = 0;
+	$Rs3SI = 0;
+	$Rs3MESS = 0;
+	$Rs3SVE = 0;
+	$RDPD = 0;
+	$Rregul = 0;
+	$Rtotal = 0;
 	$searchfor = "|G|";
 
 $contents = file_get_contents($file);
