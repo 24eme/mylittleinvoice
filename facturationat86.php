@@ -21,7 +21,7 @@
 	?>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
-      
+
       <?php include('include/header.php'); ?>
       <!-- Left side column. contains the logo and sidebar -->
       <?php include('include/left.php'); ?>
@@ -114,12 +114,12 @@ if ($handle)
 	{
 		$buffer = fgets($handle);
 		$buffer = trim($buffer);
-                $linesficxml[$buffer]=1; 
+                $linesficxml[$buffer]=1;
 	}
 	fclose($handle);
 }
 
-?>	
+?>
 	<div class="jumbotron">
 	<h2>&nbsp;Liste des Collectivit&eacute;s</h2>
 	<div>
@@ -155,7 +155,7 @@ $i=0;
 while ($i < $num) {
                 $filename='';
 		$name = mysqli_result($result,$i,"name");
-		$code_adh = mysqli_result($result,$i,"numero_adherent_collectivite_c");		
+		$code_adh = mysqli_result($result,$i,"numero_adherent_collectivite_c");
 		$id = mysqli_result($result,$i,"id");
 
 		$adhesion_vs = mysqli_result($result,$i,"adhesion_vs_c");
@@ -192,7 +192,7 @@ while ($i < $num) {
 		$s4bal = mysqli_result($result,$i,"afnic_balsup");
 		$regul_txt = mysqli_result($result,$i,"adherent_regul_def");
 		$regul_mon = mysqli_result($result,$i,"adherent_regul_mon");
-		
+
 		$emailtab[$code_adh] = $email;
 
 		echo "<tr>";
@@ -264,9 +264,9 @@ while ($i < $num) {
 			if(is_file($filename))
 			{
 				echo "<td align=center>$flagadh $annee: <a title=\"".$titlexml."\"' data-toggle='tooltip' data-placement='top' href=$filename download=$filename>XML</a></td>";
-			}	
+			}
 			else
-			{	
+			{
 				echo "<td>&nbsp;</td>";
 			}
 			$filenamepdf = substr($filename, strpos($filename, $insee."-".$annee."-")+11, strpos($filename, ".xml")-strlen($filename));
@@ -276,10 +276,10 @@ while ($i < $num) {
 				echo "<td align=center>&nbsp;<a href=\"/".$grc_config['at86']['exportservice_path']."/$filenamepdf\" download=\"$filenamepdf\">PJ</a></td>";
 			}
 			else
-			{	
+			{
 				echo "<td>&nbsp;</td>";
 			}
-			if(is_file($filename) && ($flagadh=="")) 
+			if(is_file($filename) && ($flagadh==""))
                         {
 				echo "<td align=center>&nbsp;<button type=\"button\" class=\"btn btn-xs btn-primary\" data-toggle=\"modal\" data-target=\"#Modalpoint\" data-point=\"".$filename."\"> X </button></td>";
                         }
@@ -432,9 +432,9 @@ $('#Modalpoint').on('show.bs.modal', function (event) {
 	});
 })
 </script>
-				
-				
-				
+
+
+
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->

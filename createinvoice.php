@@ -1,7 +1,7 @@
 ﻿<?php
 	/*
 		This file is part of MyLittleInvoice.
-exit;
+
     MyLittleInvoice is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License.
@@ -21,7 +21,7 @@ exit;
 	?>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
-      
+
       <?php include('include/header.php'); ?>
       <!-- Left side column. contains the logo and sidebar -->
       <?php include('include/left.php'); ?>
@@ -44,9 +44,9 @@ exit;
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-body">
-<?php				
+<?php
 
-if (isset($_GET["import"])) 
+if (isset($_GET["import"]))
 {
 	$import_insee = $_GET["import"];
 	$nomdefichier = $grc_config['urba']['path']."/txt/facturation".$annee."-".$import_insee.".txt";
@@ -57,9 +57,9 @@ else
     exit;
 }
 
-$url = $grc_config['at86']['soa_purl'];
-$username =  $grc_config['at86']['soa_purl'];
-$password =  $grc_config['at86']['soa_purl'];
+$url = $grc_config['urba']['soap_url'];
+$username =  $grc_config['urba']['soap_user'];
+$password =  $grc_config['urba']['soap_pass'];
 
 ?>
 <div class="container theme-showcase" role="main">
@@ -67,16 +67,16 @@ $password =  $grc_config['at86']['soa_purl'];
 	<h2>Import dans la GRC</h2>
 	<div>
 <?php
-$fic=fopen($nomdefichier, "r"); 
+$fic=fopen($nomdefichier, "r");
 $i = 0;
 while ($i < 2)
 {
     // on recupère la ligne courante
-	$ligne= fgets($fic,1024); 
-	//echo $ligne . "<br>"; 
+	$ligne= fgets($fic,1024);
+	//echo $ligne . "<br>";
 	//list($line['Code Adhérent'],$line['Compte'],$line['Adresse'],$line['CP'],$line['Commune'],$line['Date Facture'],$line['Date Paiement'],$line['Montant Total'],$line['Fichier pdf'],$line['Assigné à'],$line['Type Ligne'],$line['Groupe'],$line['Désignation'],$line['Descriptif'],$line['Qté'],$line['PU'],$line['QtéxPU'],$line['Total Groupe']) = explode("|", $ligne);
 	$pieces = explode("|", $ligne);
-	$i ++; 
+	$i ++;
 }
 fclose($fic) ;
 
@@ -229,13 +229,12 @@ $pieces[6] = implode('-', array_reverse(explode('-', $pieces[6])));
 $session_id =  $login_result['id'];
 $set_entry_parameters = array(
     "session" => $session_id,
-    "module_name" => "Invoice",			 
+    "module_name" => "Invoice",
     "name_value_list" => array(
 		array("name" => "assigned_user_id", "value" => "1"),
 		array("name" => "billing_account_id", "value" => $numeroid),
 		array("name" => "shipping_account_id", "value" => $numeroid),
 		array("name" => "name", "value" => "Facturation Urbanisme 1er Trimestre 2023 ".$pieces[1]),
-		//array("name" => "name", "value" => iconv("UTF-8", "WINDOWS-1252", "Facturation Urbanisme 1er trimestre 2018 ".$pieces[1])),
 		array("name" => "billing_address_street", "value" => $pieces[2]),
 		array("name" => "billing_address_city", "value" => $pieces[4]),
 		array("name" => "billing_address_postalcode", "value" => $pieces[3]),
@@ -268,28 +267,24 @@ $set_entry_result = $client->call("set_entry", $set_entry_parameters);
 
 $line['id'] = $set_entry_result['id'];
 print_r($line['id']);
-echo "line_id = " . $line['id'] . "   test  "; 
-
-
 $sqla='';
 $position=0;
 $group['id'] = '';
 
-$fichier=fopen($nomdefichier, "r"); 
-$j=1 ;//Compteur de ligne 
-while(!feof($fichier)) 
-{ 
-	$lignes= fgets($fichier,1024); 
-	//echo $ligne . "<br>"; 
+$fichier=fopen($nomdefichier, "r");
+$j=1 ;//Compteur de ligne
+while(!feof($fichier))
+{
+	$lignes= fgets($fichier,1024);
+	//echo $ligne . "<br>";
 	list($line['Code Adhérent'],$line['Compte'],$line['Adresse'],$line['CP'],$line['Commune'],$line['Date Facture'],$line['Date Paiement'],$line['Montant Total'],$line['Fichier pdf'],$line['Assigné à'],$line['Type Ligne'],$line['Groupe'],$line['Désignation'],$line['Descriptif'],$line['Qté'],$line['PU'],$line['QtéxPU'],$line['Total Groupe']) = explode("|", $lignes);
-	$j ++; 
+	$j ++;
     if ($group['id'] == '')
 	{
 	    $group['id'] = create_guid();
     }
-    }
-	
-	if ($line['Type Ligne'] == 'G') 
+
+	if ($line['Type Ligne'] == 'G')
     {
 		// On crée le groupe
 		$data = array(
@@ -315,7 +310,7 @@ while(!feof($fichier))
 		$position=0;
     }
 
-	if ($line['Type Ligne'] == 'A') 
+	if ($line['Type Ligne'] == 'A')
     {
 	    $position ++;
 		// On crée la ligne de produit
@@ -342,14 +337,14 @@ while(!feof($fichier))
 		);
 		$sqla = createInsertQuery($data2, 'invoice_lines');
 		$result2 = mysqli_query($link, $sqla);
-		if (!$result2) 
+		if (!$result2)
 		{
 			echo "Impossible d'exécuter la requête 3 ($sqla) dans la base : " . mysqli_error($link);
 			exit;
 		}
 //		echo "<p>". $sqla . "</p>";
 		$sqla='';
-		
+
 		// On crée le commentaire
 		$data3 = array(
 		'id' => create_guid(),
@@ -362,15 +357,15 @@ while(!feof($fichier))
 		);
 		$sqlc = createInsertQuery($data3, 'invoice_comments');
 		$result3 = mysqli_query($link, $sqlc);
-		if (!$result3) 
+		if (!$result3)
 		{
 			echo "Impossible d'exécuter la requête 4 ($sqlc) dans la base : " . mysqli_error($link);
 			exit;
 		}
 //		echo "<p>". $sqlc . "</p>";
-		$sqlc='';	
+		$sqlc='';
 	}
-} 
+}
 fclose($fichier) ;
 if (($set_entry_result['id'] <> '') && ($result == 1) && ($result2 == 1) && ($result3 == 1))
 {

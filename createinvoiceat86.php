@@ -21,7 +21,7 @@
 	?>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
-      
+
       <?php include('include/header.php'); ?>
       <!-- Left side column. contains the logo and sidebar -->
       <?php include('include/left.php'); ?>
@@ -44,9 +44,9 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-body">
-<?php				
+<?php
 
-if (isset($_GET["import"])) 
+if (isset($_GET["import"]))
 {
 	$import_insee = $_GET["import"];
 	$nomdefichier = $grc_config['at86']['path']."/txt/facturation".$annee."-".$import_insee.".txt";
@@ -57,9 +57,9 @@ else
     exit;
 }
 
-$url = $grc_config['at86']['soa_purl'];
-$username =  $grc_config['at86']['soa_purl'];
-$password =  $grc_config['at86']['soa_purl'];
+$url = $grc_config['at86']['soap_url'];
+$username =  $grc_config['at86']['soap_user'];
+$password =  $grc_config['at86']['soap_pass'];
 
 ?>
 <div class="container theme-showcase" role="main">
@@ -67,16 +67,16 @@ $password =  $grc_config['at86']['soa_purl'];
 	<h2>Import dans la GRC</h2>
 	<div>
 <?php
-$fic=fopen($nomdefichier, "r"); 
+$fic=fopen($nomdefichier, "r");
 $i = 0;
 while ($i < 2)
 {
     // on recupère la ligne courante
-	$ligne= fgets($fic,1024); 
-	//echo $ligne . "<br>"; 
+	$ligne= fgets($fic,1024);
+	//echo $ligne . "<br>";
 	//list($line['Code Adhérent'],$line['Compte'],$line['Adresse'],$line['CP'],$line['Commune'],$line['Date Facture'],$line['Date Paiement'],$line['Montant Total'],$line['Fichier pdf'],$line['Assigné à'],$line['Type Ligne'],$line['Groupe'],$line['Désignation'],$line['Descriptif'],$line['Qté'],$line['PU'],$line['QtéxPU'],$line['Total Groupe']) = explode("|", $ligne);
 	$pieces = explode("|", $ligne);
-	$i ++; 
+	$i ++;
 }
 fclose($fic) ;
 
@@ -209,7 +209,7 @@ $login_result = $client->call('login', $login_parameters);
 $sql = 'SELECT id_c FROM accounts_cstm WHERE numero_adherent_collectivite_c = \'' . ($pieces[0]) . '\'';
 $result = mysqli_query($link, $sql);
 if (!$result) {
-   echo "Impossible d'exécuter la requête ($sql) dans la base : " . mysqli_error($link);
+   echo "Impossible d'exécuter la requête 1 ($sql) dans la base : " . mysqli_error($link);
    exit;
 }
 if (mysqli_num_rows($result) == 0) {
@@ -229,7 +229,7 @@ $pieces[6] = implode('-', array_reverse(explode('-', $pieces[6])));
 $session_id =  $login_result['id'];
 $set_entry_parameters = array(
     "session" => $session_id,
-    "module_name" => "Invoice",			 
+    "module_name" => "Invoice",
     "name_value_list" => array(
 		array("name" => "assigned_user_id", "value" => "1"),
 		array("name" => "billing_account_id", "value" => $numeroid),
@@ -271,20 +271,20 @@ $sqla='';
 $position=0;
 $group['id'] = '';
 
-$fichier=fopen($nomdefichier, "r"); 
-$j=1 ;//Compteur de ligne 
-while(!feof($fichier)) 
-{ 
-	$lignes= fgets($fichier,1024); 
-	//echo $ligne . "<br>"; 
+$fichier=fopen($nomdefichier, "r");
+$j=1 ;//Compteur de ligne
+while(!feof($fichier))
+{
+	$lignes= fgets($fichier,1024);
+	//echo $ligne . "<br>";
 	list($line['Code Adhérent'],$line['Compte'],$line['Adresse'],$line['CP'],$line['Commune'],$line['Date Facture'],$line['Date Paiement'],$line['Montant Total'],$line['Fichier pdf'],$line['Assigné à'],$line['Type Ligne'],$line['Groupe'],$line['Désignation'],$line['Descriptif'],$line['Qté'],$line['PU'],$line['QtéxPU'],$line['Total Groupe']) = explode("|", $lignes);
-	$j ++; 
+	$j ++;
     if ($group['id'] == '')
 	{
 	    $group['id'] = create_guid();
     }
-	
-	if ($line['Type Ligne'] == 'G') 
+
+	if ($line['Type Ligne'] == 'G')
     {
 		// On crée le groupe
 		$data = array(
@@ -302,15 +302,15 @@ while(!feof($fichier))
 		$sql = createInsertQuery($data, 'invoice_line_groups');
 		$result = mysqli_query($link, $sql);
 		if (!$result) {
-			echo "Impossible d'exécuter la requête ($sql) dans la base : " . mysqli_error($link);
+			echo "Impossible d'exécuter la requête 2 ($sql) dans la base : " . mysqli_error($link);
 			exit;
 		}
-//		echo "<p>". $sql . "</p>";
+		//echo "<p>". $sql . "</p>";
 		$group['id'] = '';
 		$position=0;
     }
 
-	if ($line['Type Ligne'] == 'A') 
+	if ($line['Type Ligne'] == 'A')
     {
 	    $position ++;
 		// On crée la ligne de produit
@@ -337,14 +337,14 @@ while(!feof($fichier))
 		);
 		$sqla = createInsertQuery($data2, 'invoice_lines');
 		$result2 = mysqli_query($link, $sqla);
-		if (!$result2) 
+		if (!$result2)
 		{
-			echo "Impossible d'exécuter la requête ($sqla) dans la base : " . mysqli_error($link);
+			echo "Impossible d'exécuter la requête 3 ($sqla) dans la base : " . mysqli_error($link);
 			exit;
 		}
 //		echo "<p>". $sqla . "</p>";
 		$sqla='';
-		
+
 		// On crée le commentaire
 		$data3 = array(
 		'id' => create_guid(),
@@ -357,19 +357,31 @@ while(!feof($fichier))
 		);
 		$sqlc = createInsertQuery($data3, 'invoice_comments');
 		$result3 = mysqli_query($link, $sqlc);
-		if (!$result3) 
+		if (!$result3)
 		{
-			echo "Impossible d'exécuter la requête ($sqlc) dans la base : " . mysqli_error($link);
+			echo "Impossible d'exécuter la requête 4 ($sqlc) dans la base : " . mysqli_error($link);
 			exit;
 		}
 //		echo "<p>". $sqlc . "</p>";
-		$sqlc='';	
+		$sqlc='';
 	}
-} 
+}
 fclose($fichier) ;
 if (($set_entry_result['id'] <> '') && ($result == 1) && ($result2 == 1) && ($result3 == 1))
 {
 	echo "L'import de la facture pour la collectivité ".$pieces[1]. " N° d'adhérent ".$pieces[0]." s'est bien déroulé !";
+}
+else
+{
+	echo "L'import de la facture pour la collectivité ".$pieces[1]. " N° d'adhérent ".$pieces[0]." ne s'est pas bien déroulé !";
+        echo '<br>[';
+        print_r($set_entry_result['id']);
+        echo ']-';
+        print_r($result);
+        echo '-';
+        print_r($result2);
+        echo '-';
+        print_r($result3);
 }
 ?>
 		</div>
