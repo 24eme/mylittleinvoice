@@ -130,6 +130,7 @@ while ( $i < count($ListFiles))
 	$searchfor = "|G|";
 
 $contents = file_get_contents($file);
+$contents = utf8_encode($contents);
 $pattern = preg_quote($searchfor, '/');
 $pattern = "/^.*$pattern.*\$/m";
 
