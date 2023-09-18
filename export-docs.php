@@ -16,7 +16,7 @@
 		*/
 include('include/fpdf/fpdf.php');
 
-include('config.php');
+include('global.php');
 
 		 global $bd;
 		 if(!empty($_GET['id_quote'])){$type_doc = 'quote';$id_doc = $_GET['id_quote'];}

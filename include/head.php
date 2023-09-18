@@ -14,8 +14,8 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>
 		*/
-	include('config.php');	
-	
+	include('global.php');
+
 ?><!DOCTYPE html>
 <html>
   <head>

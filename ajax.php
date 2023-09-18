@@ -15,7 +15,7 @@
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>
 		*/
 
-include('config.php');
+include('global.php');
 global $lang;
 
 // Liste des devis
