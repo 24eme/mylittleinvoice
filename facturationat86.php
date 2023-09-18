@@ -244,10 +244,10 @@ while ($i < $num) {
 		}
                 echo "<td><table>";
 		foreach (glob($grc_config['at86']['exportservice_path']."/".$insee."-".$annee."-*.xml") as $filename) {
-                    $ficfilename = explode("/",$filename);
-                    $ficfilename = explode(".",$ficfilename[1]);
-		    if ($linesficxml[$ficfilename[0]] <> 1)
-                    {
+		    $ficfilename = explode("/",$filename);
+		    $ficfilename = explode(".",$ficfilename[1]);
+		    if (isset($linesficxml[$ficfilename[0]]) && ($linesficxml[$ficfilename[0]] <> 1))
+		    {
 			$xml = simplexml_load_file($filename);
                         $titlexml =$xml->TypePieceImport->Piece->InfoPiece->Objet['V'];
 			if ( substr($xml->TypePieceImport->Piece->InfoPiece->Objet['V'],0,16) == "Facturation 2019")
