@@ -72,7 +72,7 @@ $i = 0;
 while ($i < 2)
 {
     // on recupère la ligne courante
-	$ligne= fgets($fic,1024);
+	$ligne= utf8_encode(fgets($fic,1024));
 	//echo $ligne . "<br>";
 	//list($line['Code Adhérent'],$line['Compte'],$line['Adresse'],$line['CP'],$line['Commune'],$line['Date Facture'],$line['Date Paiement'],$line['Montant Total'],$line['Fichier pdf'],$line['Assigné à'],$line['Type Ligne'],$line['Groupe'],$line['Désignation'],$line['Descriptif'],$line['Qté'],$line['PU'],$line['QtéxPU'],$line['Total Groupe']) = explode("|", $ligne);
 	$pieces = explode("|", $ligne);
@@ -275,7 +275,7 @@ $fichier=fopen($nomdefichier, "r");
 $j=1 ;//Compteur de ligne
 while(!feof($fichier))
 {
-	$lignes= fgets($fichier,1024);
+	$lignes= utf8_encode(fgets($fichier,1024));
 	//echo $ligne . "<br>";
 	list($line['Code Adhérent'],$line['Compte'],$line['Adresse'],$line['CP'],$line['Commune'],$line['Date Facture'],$line['Date Paiement'],$line['Montant Total'],$line['Fichier pdf'],$line['Assigné à'],$line['Type Ligne'],$line['Groupe'],$line['Désignation'],$line['Descriptif'],$line['Qté'],$line['PU'],$line['QtéxPU'],$line['Total Groupe']) = explode("|", $lignes);
 	$j ++;
