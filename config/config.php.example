@@ -1,18 +1,18 @@
 <?php
 
-	$host = '127.0.0.1';
-	$login = 'monlogin';
-	$password = '*****';
-	$basename = 'grc';
+        $host = 'localhost';
+        $login = 'user';
+        $password = 'pass';
+        $basename = 'db';
+        $prefix = 'mli_';
+
 	// Base GRC
 	$base_grc = 'grc';
 	$login_grc = 'login';
 	$password_grc = '****';
 
-    $prefix = 'mli_';
-
 	$grc_config['at86']['path'] = '../fichier_at86';
-    $grc_config['at86']['soap_url'] = 'https://grc.fr/api/soap.php?wsdl';
-    $grc_config['at86']['soap_user'] = 'login';
-    $grc_config['at86']['soap_pass'] = 'pass';
+	$grc_config['at86']['soap_url'] = 'https://grc.fr/api/soap.php?wsdl';
+	$grc_config['at86']['soap_user'] = 'login';
+	$grc_config['at86']['soap_pass'] = 'pass';
 	$grc_config['at86']['exportservice_path'] = '../fichier_at86/export-services/';

@@ -15,7 +15,7 @@
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>
 		*/
 	include('global.php');	
-	
+
 ?><!DOCTYPE html>
 <html>
   <head>

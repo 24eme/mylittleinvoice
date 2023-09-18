@@ -9,7 +9,7 @@
 	global $prefix;
 	global $option_name;
 	global $bd;
-    global $grc_config;
+	global $grc_config;
 
 	global $fichier;
 	global $tableauIni;
@@ -44,8 +44,6 @@
 	// Base facturation
 	if(!file_exists('config/config.php')){header('Location: install.php');exit();}
 	include('config/config.php');
-
-	$option_name = $prefix . 'options';
 
 	include('build/class.bdpoo.php');
 	$bd = new Bd;

@@ -133,19 +133,12 @@
 	$basename = \'' . $_POST['basename'] . '\';
 	$prefix = \'' . $_POST['prefix'] . '\';
 	$option_name = $prefix . \'options\';
-	
-	include(\'build/class.bdpoo.php\');
-	$bd = new Bd;
-	$bd->config($host,$login,$password,$basename,$prefix,$option_name);
-	
-	
-	include(\'include/login.php\');
-?>';
+';
 
 				if(@$config_file = fopen('config/config.php', 'w') AND @fwrite($config_file, $config_content)){
 					echo '<p class="login-box-msg">Le fichier de configuration a bien été créé.</p>';
 				}else{
-					echo '<p class="login-box-msg">Une erreur s\'est produite, et le fichier de configuration n\'a pas pu être créé. Vous pouvez modifier les permissions, ou créer manuellement le fichier "config.php" en copiant le contenu ci-dessous : 
+					echo '<p class="login-box-msg">Une erreur s\'est produite, et le fichier de configuration n\'a pas pu être créé. Vous pouvez modifier les permissions, ou créer manuellement le fichier "config/config.php" en copiant le contenu ci-dessous :
 				<br /><textarea>' . $config_content . '</textarea>
 				</p>';
 				}

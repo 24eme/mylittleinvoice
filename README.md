@@ -1,4 +1,4 @@
-# MyLittleInvoice, version Alpha 0.5 
+# MyLittleInvoice, version Alpha 0.6
 
 ## Description
 
@@ -51,7 +51,7 @@ Après l'installation, vous pouvez supprimer le fichier "install.php" par préca
 
 ## Changelogs
 
-### Fork 24eme
+### Alpha publique V0.6 - Fork 24eme
 
  - Comptabilité avec php8
  - Migration des appels SQL via mysqli
@@ -60,6 +60,7 @@ Après l'installation, vous pouvez supprimer le fichier "install.php" par préca
  - Mise à jour des lib js (respond v1.4.2, raphael v2.1.0, moment v2.10.2, jquery-ui v1.11.4, html5shiv v3.7.2)
  - Mise à jour de ionicons (v2.0.1) et font-awesome (v4.3.0)
  - Intégration d'options par défaut pour des tests simplifiés
+ - Fichier de configuration plus simple et qui permet l'intégration d'autres éléments que la conf de base de données
 
 ### Alpha publique V0.5:
 
