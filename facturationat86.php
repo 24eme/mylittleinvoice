@@ -160,7 +160,7 @@ while ($i < $num) {
 
 		$adhesion_vs = mysqli_result($result,$i,"adhesion_vs_c");
 
-		$compte = utf8_encode(mysqli_result($result,$i,"name"));
+		$compte = mysqli_result($result,$i,"name");
 		$insee = mysqli_result($result,$i,"numero_adherent_collectivite_c");
 		$type = mysqli_result($result,$i,"account_type");
 		$etablissement = mysqli_result($result,$i,"name");

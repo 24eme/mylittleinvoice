@@ -168,10 +168,10 @@
 																$compte = mysqli_result($result, $i, "name");
 																$insee = mysqli_result($result, $i, "numero_adherent_collectivite_c");
 																$type = mysqli_result($result, $i, "account_type");
-																$etablissement = utf8_encode(mysqli_result($result, $i, "nomcomplet_c"));
-																$adresse1 = utf8_encode(mysqli_result($result, $i, "billing_address_street"));
+																$etablissement = mysqli_result($result, $i, "nomcomplet_c");
+																$adresse1 = mysqli_result($result, $i, "billing_address_street");
 																$cp = mysqli_result($result, $i, "billing_address_postalcode");
-																$commune = utf8_encode(mysqli_result($result, $i, "billing_address_city"));
+																$commune = mysqli_result($result, $i, "billing_address_city");
 																$tel = mysqli_result($result, $i, "phone_office");
 																$fax = mysqli_result($result, $i, "phone_fax");
 																$email = mysqli_result($result, $i, "email1");
@@ -196,7 +196,7 @@
 																$s3balvs = mysqli_result($result, $i, "bal_vs_c");
 																$s3afnic = mysqli_result($result, $i, "liste_dns_c");
 																$s3bal = mysqli_result($result, $i, "afnic_balsup");
-																$regul_txt = utf8_encode(mysqli_result($result, $i, "adherent_regul_def"));
+																$regul_txt = mysqli_result($result, $i, "adherent_regul_def");
 																$regul_mon = mysqli_result($result, $i, "adherent_regul_mon");
 																$quota_teles_q = mysqli_result($result, $i, "quota_teles_q");
 																$quota_teles_u = mysqli_result($result, $i, "quota_teles_u");
@@ -450,7 +450,7 @@
 
                                                                     if (preg_match_all($pattern, $contents, $matches)) {
 																	    for ($mi = 0; $mi < sizeof($matches[0]); ++$mi) {
-																		     $mip = explode("|", utf8_encode($matches[0][$mi]));
+																		     $mip = explode("|", $matches[0][$mi]);
 																		     if (($mip[11] == "Cotisation 2018") && ($mip[10] == "G")) {
 																			     $cotisationa = number_format($mip[17], 2, '.', '');
 																		     }
@@ -850,7 +850,7 @@
 																$Rtotdpd += $cotisationdpd;
 																$Rtottotal += $totalvs;
 																//<td>" . number_format($tab[$insee]['adhvs'] + $tab[$insee]['adhatd'], 2, '.', '') . "</td><td>" . number_format($cotisationa, 2, '.', '') . "</td>
-																echo "<tr><td>" . $insee . "</td><td>" . utf8_encode($compte) . "</td><td><font color=$couleuradh>" . number_format($cotisation, 2, '.', '') . "</font></td><td>" . number_format($service1, 2, '.', '') . "</td><td>" . number_format($service2, 2, '.', '') . "</td><td>" . number_format($service3metier, 2, '.', '') . "</td><td>" . number_format($service3demat, 2, '.', '') . "</td><td>" . number_format($service3mp, 2, '.', '') . "</td><td>" . number_format($service3si, 2, '.', '') . "</td><td>" . number_format($service3com, 2, '.', '') . "</td><td>" . number_format($service3sve, 2, '.', '') . "</td><td>" . number_format($regul_mon, 2, '.', '') . "</td><td>" . number_format($cotisationdpd, 2, '.', '') . "</td><td>" . number_format($totalvs, 2, '.', '') . "</td></tr>";
+																echo "<tr><td>" . $insee . "</td><td>" . $compte . "</td><td><font color=$couleuradh>" . number_format($cotisation, 2, '.', '') . "</font></td><td>" . number_format($service1, 2, '.', '') . "</td><td>" . number_format($service2, 2, '.', '') . "</td><td>" . number_format($service3metier, 2, '.', '') . "</td><td>" . number_format($service3demat, 2, '.', '') . "</td><td>" . number_format($service3mp, 2, '.', '') . "</td><td>" . number_format($service3si, 2, '.', '') . "</td><td>" . number_format($service3com, 2, '.', '') . "</td><td>" . number_format($service3sve, 2, '.', '') . "</td><td>" . number_format($regul_mon, 2, '.', '') . "</td><td>" . number_format($cotisationdpd, 2, '.', '') . "</td><td>" . number_format($totalvs, 2, '.', '') . "</td></tr>";
 
 																//$chainerecap=$insee."|".$compte."|".$type."|".number_format($cotisation,2,'.','')."|".number_format($service1,2,'.','')."|".number_format($service2,2,'.','')."|".number_format($service3metier,2,'.','')."|".number_format($service3demat,2,'.','')."|".number_format($service3mp,2,'.','')."|".number_format($service3si,2,'.','')."|".number_format($service3usersmescol,2,'.','')."|".number_format($service3sve,2,'.','')."|".number_format($service3dns,2,'.','')."|".number_format($service4bal,2,'.','')."|".number_format($cotisationdpd,2,'.','')."|".number_format($regul_mon,2,'.','')."|".number_format($totalvs,2,'.','');
 

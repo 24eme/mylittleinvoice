@@ -139,7 +139,7 @@ if(preg_match_all($pattern, $contents, $matches)){
             //echo "Taille : ".sizeof($matches[0])."<br />";
             for ($mi = 0; $mi <sizeof($matches[0]) ; ++$mi)
             {
-		$mip = explode("|",utf8_encode($matches[0][$mi]));
+		$mip = explode("|",$matches[0][$mi]);
         	$Rinsee = $mip[0];
 		$Rcollectivite = $mip[1];
                 if ($mip[11] == "Cotisation d'adhésion AT86")
@@ -187,7 +187,7 @@ if(preg_match_all($pattern, $contents, $matches)){
  			$Rregul = number_format($mip[17],2,'.','');
                 }
 		$Rtotal = number_format($mip[7],2,'.','');
-                //echo utf8_encode($matches[0][$mi])."<br />";
+                //echo $matches[0][$mi]."<br />";
             }
             $Rtotal= number_format($Rtotal,2,'.','');
             echo "<tr><td>".$mip[0]."</td><td>".$mip[1]."</td><td>".$Radhesion."</td><td>".$Rs1."</td><td>".$Rs2."</td><td>".$Rs3MET."</td><td>".$Rs3DEMAT."</td><td>".$Rs2MP."</td><td>".$Rs3SI."</td><td>".$Rs3MESS."</td><td>".$Rs3SVE."</td><td>".$RDPD."</td><td>".$Rregul."</td><td>".$Rtotal."</td></tr>";

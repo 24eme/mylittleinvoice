@@ -51,7 +51,7 @@
 
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
-	<h2><?php echo utf8_encode($name_facturation_urba); ?></h2>
+	<h2><?php echo $name_facturation_urba; ?></h2>
 	<div>
     <table class="table table-striped">
     <thead>
@@ -92,14 +92,14 @@
   $i=0;
   while ( $i < count($ListFiles))
   {
-	  		$ficlog = $dir.$ListFiles[$i];	
+	  		$ficlog = $dir.$ListFiles[$i];
 			$fp = fopen ("$ficlog","r");
-			while(!feof($fp)) {	
+			while(!feof($fp)) {
 				$ligne = fgets($fp);
 				$pieces = explode("|", $ligne);
 				echo "<tr>";
 				echo "<td>".$pieces[0]."</td>";
-				echo "<td>".utf8_encode($pieces[1])."</td>";
+				echo "<td>".$pieces[1]."</td>";
 				echo "<td>".$pieces[3]."</td>";
 				$total[3] = $total[3] + $pieces[3];
 				echo "</tr>";
