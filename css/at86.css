@@ -1,0 +1,8 @@
+.login-page, .register-page {
+  background: #ffffff;
+}
+.login-box, .register-box {
+  width: 400px;
+   margin: 7% auto;
+}
+
