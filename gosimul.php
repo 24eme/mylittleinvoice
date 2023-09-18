@@ -480,10 +480,10 @@
 																	//	}
 																	//	else
 																	//	{
-																	//	
+																	//
 																	//	}
-																	// Calcul Global	
-																	$service1 = number_format(($mat_ser1) + $mat_sec + $tot_utmcol + $telesauvegarde, 2, '.', '');
+																	// Calcul Global
+																	$service1 = number_format(($mat_ser1) + $mat_sec + $tot_utmcol, 2, '.', '');
 																}
 
 																//*************************************
@@ -869,7 +869,7 @@
 													mysqli_close($link);
 														//<td>" . number_format($Rtotadh2017, 2, '.', '') . "</td><td>" . number_format($Rtotadha, 2, '.', '') . "</td>
 													echo "<tr><td>Total</td><td>&nbsp;</td><td>" . number_format($Rtotadhesion, 2, '.', '') . "</td><td>" . number_format($Rtots1, 2, '.', '') . "</td><td>" . number_format($Rtots2, 2, '.', '') . "</td><td>" . number_format($Rtots3MET, 2, '.', '') . "</td><td>" . number_format($Rtots3DEMAT, 2, '.', '') . "</td><td>" . number_format($Rtots2MP, 2, '.', '') . "</td><td>" . number_format($Rtots3SI, 2, '.', '') . "</td><td>" . number_format($Rtots3MESS, 2, '.', '') . "</td><td>" . number_format($Rtots3SVE, 2, '.', '') . "</td><td>" . number_format($Rtotregul, 2, '.', '') . "</td><td>" . number_format($Rtotdpd, 2, '.', '') . "</td><td>" . number_format($Rtottotal, 2, '.', '') . "</td></tr>";
-													echo "<tr><td><b>Insee</b></td><td><b>" . utf8_encode(Collectivite) . "</b></td><td><b>Adh</b></td><td><b>S1</b></td><td><b>S2</b></td><td><b>S3MET</b></td><td><b>S3DEMAT</b></td><td><b>S3MP</b></td><td><b>S3SI</b></td><td><b>S3MESS</b></td><td><b>S3SVE</b></td><td><b>Regul</b></td><td><b>DPD</b></td><td><b>Total</b></td></tr>";
+													echo "<tr><td><b>Insee</b></td><td><b>Collectivite</b></td><td><b>Adh</b></td><td><b>S1</b></td><td><b>S2</b></td><td><b>S3MET</b></td><td><b>S3DEMAT</b></td><td><b>S3MP</b></td><td><b>S3SI</b></td><td><b>S3MESS</b></td><td><b>S3SVE</b></td><td><b>Regul</b></td><td><b>DPD</b></td><td><b>Total</b></td></tr>";
 													//<td><b>Adh 2017</b></td><td><b>Adh 2018</b></td>
 													?>
  											</tbody>
