@@ -14,14 +14,14 @@
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>
 		*/
-	if(!file_exists('config.php')){header('Location: install.php');exit();}
+
 	include('include/head.php');
 	global $bd;
 	global $lang;
 	?>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
-      
+
       <?php include('include/header.php'); ?>
       <!-- Left side column. contains the logo and sidebar -->
       <?php include('include/left.php'); ?>
