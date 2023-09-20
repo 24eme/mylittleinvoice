@@ -31,6 +31,9 @@ class Bd{
 		$insert_id = '';
 		$insert_value = '';
 		$mysqli = new mysqli($this->host, $this->login, $this->password, $this->basename);
+		if ($mysqli->connect_errno) {
+			throw new Exception("Failed to connect to MySQL: " . $mysqli -> connect_error);
+		}
 		foreach($data as $id => $value){
 			$id = addslashes($id);
 			$value = addslashes($value);
@@ -48,6 +51,9 @@ class Bd{
 	}
 	public function update($table_name, $data, $where){
 		$mysqli = new mysqli($this->host, $this->login, $this->password, $this->basename);
+		if ($mysqli->connect_errno) {
+			throw new Exception("Failed to connect to MySQL: " . $mysqli -> connect_error);
+		}
 		$insert_value = '';
 		foreach($data as $id => $value){
 			$id = addslashes($id);
@@ -72,7 +78,13 @@ class Bd{
 	}
 	public function get_results($request){
 		$mysqli = new mysqli($this->host, $this->login, $this->password, $this->basename);
+		if ($mysqli->connect_errno) {
+			throw new Exception("Failed to connect to MySQL: " . $mysqli -> connect_error);
+		}
 		$results = $mysqli->query($request);
+		if (!$results) {
+			throw new Exception("Error description: " . $mysqli -> error." ($request)");
+		}
 		$reponse = array();
 		$counter = 0;
 		while ($result = $results->fetch_array()){
@@ -87,11 +99,20 @@ class Bd{
 	}
 	public function query($query = ''){
 		$mysqli = new mysqli($this->host, $this->login, $this->password, $this->basename);
+		if ($mysqli->connect_errno) {
+			throw new Exception("Failed to connect to MySQL: " . $mysqli -> connect_error);
+		}
 		$results = $mysqli->query($query);
+		if (!$results) {
+			throw new Exception("Error description: " . $mysqli -> error." ($request)");
+		}
 		$mysqli->close();
 		return true;
 	}
 	public function get_option($name='', $default=null){
+		if (!$this->option_table) {
+			throw new Exception('option_table missing in configuration');
+        }
 		$r = $this->get_results('SELECT * FROM ' . $this->option_table . ' WHERE option_name="' . $name . '"');
 		if(is_array($r) AND !empty($r)){
 			$reponse = $r[0]->option_value;
@@ -105,6 +126,9 @@ class Bd{
 		return $reponse;
 	}
 	public function set_option($name='',$value=''){
+		if (!$this->option_table) {
+			throw new Exception('option_table missing in configuration');
+		}
 		$r = $this->get_results('SELECT * FROM ' . $this->option_table . ' WHERE option_name="' . $name . '"');
 		if(is_array($r) AND !empty($r)){
 			if($this->update($this->option_table,array('option_value'=>$value),array('option_name'=>$name))){
@@ -141,6 +165,3 @@ class Bd{
 		$this->option_table = $option_table;
 	}
 }
-
-
-?>
