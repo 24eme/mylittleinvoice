@@ -303,9 +303,9 @@ $adresse1 = str_replace($order, $replace, $str);
 $fp2 = fopen ("$ficlog","a+"); 
 for ($calcul2=0; $calcul2<$ligne_article; $calcul2++)
 {
-	$chaine2="$code_adh|$compte|".$adresse1."|$cp|".$commune."|".$now->format( 'd-m-Y' )."|".$clone->format( 'd-m-Y' )."|$totalvs||1|$phase2[$calcul2]\r\n";
+	$chaine2="$code_adh|$compte|$adresse1|$cp|$commune|".$now->format( 'd-m-Y' )."|".$clone->format( 'd-m-Y' )."|$totalvs||1|$phase2[$calcul2]\r\n";
 	// On écrit dans le fichier d'export la chaine
-    $ligne2 = fputs($fp2,iconv("UTF-8", "WINDOWS-1252", $chaine2));
+	$ligne2 = fputs($fp2,iconv("UTF-8", "WINDOWS-1252", $chaine2));
 	echo $chaine2;
 }
 fclose($fp2);
