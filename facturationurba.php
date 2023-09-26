@@ -265,7 +265,7 @@ while ($i < $num) {
         <h4 class="modal-title" id="myModalLabel">Suppression des fichiers</h4>
       </div>
       <div class="modal-body">
-        Voulez-vous supprimer les fichiers de factures générées ?
+          Si ce message s'affiche c'est qu'il y a un problème technique (avec le javascript et/ou bootstrap).
       </div>
       <div class="modal-footer">
 		<button type="button" id="myStateButton" data-complete-text="finished!" class="btn btn-primary" autocomplete="off">OUI</button>
@@ -283,7 +283,7 @@ while ($i < $num) {
         <h4 class="modal-title" id="myModalLabel">Blocage Simulation</h4>
       </div>
       <div class="modal-body">
-        Voulez-vous bloquer la simulation de factures ?
+          Si ce message s'affiche c'est qu'il y a un problème technique (avec le javascript et/ou bootstrap).
       </div>
       <div class="modal-footer">
 		<button type="button" id="myBlocButton" data-complete-text="finished!" class="btn btn-primary" autocomplete="off">OUI</button>
@@ -301,7 +301,7 @@ while ($i < $num) {
         <h4 class="modal-title" id="myModalLabel">Import des facture dans ma GRC</h4>
       </div>
       <div class="modal-body">
-        Voulez-vous importer la facture ?
+          Si ce message s'affiche c'est qu'il y a un problème technique (avec le javascript et/ou bootstrap).
       </div>
       <div class="modal-footer">
 		<button type="button" id="myImportButton" data-complete-text="finished!" class="btn btn-primary" autocomplete="off">OUI</button>

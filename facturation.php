@@ -120,7 +120,7 @@ closedir($dir);
         <h4 class="modal-title" id="myModalLabel">Suppression des fichiers</h4>
       </div>
       <div class="modal-body">
-        Voulez-vous supprimer les fichiers de factures générées ?
+		  Si ce message s'affiche c'est qu'il y a un problème technique (avec le javascript et/ou bootstrap).
       </div>
       <div class="modal-footer">
 		<button type="button" id="myStateButton" data-complete-text="finished!" class="btn btn-primary" autocomplete="off">OUI</button>
