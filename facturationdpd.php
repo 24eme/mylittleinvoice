@@ -222,8 +222,10 @@ while ($i < $num) {
 		{
 			echo "<td>&nbsp;</td>";
 		}
+        $filenamedpd = null;
                 foreach (glob($grc_config['dpd']['exportservice_path']."/".$insee."-".$annee."-*.xml") as $filenamedpd) {
                         //echo "$filename occupe " . filesize($filename) . "\n";
+						break;
                 }
                 if(is_file($filenamedpd))
                 {

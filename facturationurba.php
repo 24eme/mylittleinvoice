@@ -221,8 +221,10 @@ while ($i < $num) {
 		{
 			echo "<td>&nbsp;</td>";
 		}
+        $filenameurba = '';
                 foreach (glob($grc_config['urba']['exportservice_path']."/".$insee."-".$annee."-*.xml") as $filenameurba) {
                         //echo "$filename occupe " . filesize($filename) . "\n";
+						break;
                 }
                 if(is_file($filenameurba))
                 {

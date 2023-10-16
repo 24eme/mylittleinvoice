@@ -290,6 +290,7 @@ while ($i < $num) {
 			unset($filename);
 	                echo "</tr>";
                     }
+                    break;
                 }
                 echo "</table></td>";
 		echo "</tr>";
