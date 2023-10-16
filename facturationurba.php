@@ -181,11 +181,13 @@ while ($i < $num) {
 
 		$regul_txt = mysqli_result($result,$i,"adherent_regul_def");
 		$regul_mon = mysqli_result($result,$i,"adherent_regul_mon");
-		
+
 		$emailtab[$code_adh] = $email;
-		
-		if ($tab[$code_adh] <> '') 
-		{
+
+		$i++;
+		if (!isset($tab[$code_adh]) || !$tab[$code_adh]) {
+			continue;
+		}
 		echo "<tr>";
 		echo "<td>".$compte."</td>";
 		echo "<td>".$code_adh."</td>";
@@ -247,8 +249,6 @@ while ($i < $num) {
                 }
 
 		echo "</tr>";
-		}
-		$i++;
 	}
 ?>
 			</tbody>
