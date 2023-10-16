@@ -74,13 +74,14 @@ while(false != ($file = readdir($dir))) {
         if($fileChunks[1] == $desired_extension){
 
             echo "<tr><td align=center>Fichier Facture : $file </td>";
-
+            $filename = null;
             foreach (glob("corail-export-intervention/".$file) as $filename) {
             //echo "$filename occupe " . filesize($filename) . "\n";
+                break;
             }
             if(is_file($filename))
             {
-                echo "<td align=center><a href=$filename download=$file>&nbsp;XML&nbsp;</a></td>";
+                echo "<td align=center><a href='$filename' download='$file'>&nbsp;XML&nbsp;</a></td>";
             }
             else
             {
@@ -93,8 +94,8 @@ while(false != ($file = readdir($dir))) {
             unset($filename);
             if(is_file("corail-export-intervention/".$filenamepdf))
             {
-                echo "<td align=center><a href=corail-export-intervention/$filenamepdf download=$filenamepdf>&nbsp;PJ&nbsp;</a></td>";
-            }    
+                echo "<td align=center><a href='corail-export-intervention/$filenamepdf' download='$filenamepdf'>&nbsp;PJ&nbsp;</a></td>";
+            }
             else
             {
                 echo "<td>&nbsp;</td>";
