@@ -240,25 +240,23 @@ while ($i < $num) {
 		}
 		else
 		{
-			echo "<td>&nbsp;</td>";
+			echo "<td>&nbsp;<!</td>";
 		}
-                echo "<td><table>";
+        echo "<td><table> ";
 		foreach (glob($grc_config['at86']['exportservice_path']."/".$insee."-".$annee."-*.xml") as $filename) {
-		    $ficfilename = explode("/",$filename);
-		    $ficfilename = explode(".",$ficfilename[1]);
-		    if (isset($linesficxml[$ficfilename[0]]) && ($linesficxml[$ficfilename[0]] <> 1))
-		    {
-			$xml = simplexml_load_file($filename);
-                        $titlexml =$xml->TypePieceImport->Piece->InfoPiece->Objet['V'];
-			if ( substr($xml->TypePieceImport->Piece->InfoPiece->Objet['V'],0,16) == "Facturation 2019")
- 			{
-				$flagadh="[X]";
-			}
-			else
+			$ficfilename = explode("/",$filename);
+			$ficfilename = explode(".",$ficfilename[1]);
+			$flagadh="";
+			if (isset($linesficxml[$ficfilename[0]]) && ($linesficxml[$ficfilename[0]] <> 1))
 			{
-				$flagadh="";
+				$xml = simplexml_load_file($filename);
+				$titlexml =$xml->TypePieceImport->Piece->InfoPiece->Objet['V'];
+				if ( substr($xml->TypePieceImport->Piece->InfoPiece->Objet['V'],0,16) == "Facturation 2019")
+				{
+					$flagadh="[X]";
+				}
 			}
-                        echo "<tr>";
+			echo "<tr>";
 			//echo "$filename occupe " . filesize($filename) . "\n";
 			//}
 			if(is_file($filename))
@@ -273,29 +271,27 @@ while ($i < $num) {
 			$filenamepdf = $annee."-".$filenamepdf.".pdf";
 			if(is_file($grc_config['at86']['exportservice_path']."/".$filenamepdf))
 			{
-				echo "<td align=center>&nbsp;<a href=\"/".$grc_config['at86']['exportservice_path']."/$filenamepdf\" download=\"$filenamepdf\">PJ</a></td>";
+				echo "<td align=center>&nbsp;<a href=\"./".$grc_config['at86']['exportservice_path']."/$filenamepdf\" download=\"$filenamepdf\">PJ</a></td>";
 			}
 			else
 			{
 				echo "<td>&nbsp;</td>";
 			}
 			if(is_file($filename) && ($flagadh==""))
-                        {
+			{
 				echo "<td align=center>&nbsp;<button type=\"button\" class=\"btn btn-xs btn-primary\" data-toggle=\"modal\" data-target=\"#Modalpoint\" data-point=\"".$filename."\"> X </button></td>";
-                        }
+			}
 			else
-                        {
+			{
 				echo "<td>&nbsp;</td>";
-                        }
+			}
 			unset($filename);
-	                echo "</tr>";
-                    }
-                    break;
-                }
-                echo "</table></td>";
+			echo "</tr>";
+		}
+    	echo "</table></td>";
 		echo "</tr>";
 		$i++;
-	}
+}
 ?>
 			</tbody>
           </table>
