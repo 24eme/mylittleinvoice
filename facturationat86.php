@@ -18,6 +18,23 @@
 	global $bd;
 	global $link;
 	global $lang;
+
+	//Gestion du banissement de la visualisation de certains factures
+	if (isset($_GET["point"])) {
+		$codexml = $_GET["point"];
+	    $piecexml = explode("/", $codexml);
+	    $piecexml = explode(".", $piecexml[1]);
+		$fichierxml = fopen('config/config.poi', 'a');
+		if (!$fichierxml) {
+			throw new Exception('unable to write on config/config.poi ('.$_SERVER['USER'].')');
+		}
+		fwrite($fichierxml, $piecexml[0]."\r\n");
+		fclose($fichierxml);
+		header("Location: facturationat86.php\n");
+		exit;
+	}
+
+
 	?>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
@@ -96,17 +113,6 @@ if (isset($_GET["unlink"])) {
     echo "<script type='text/javascript'>document.location.replace('facturationat86.php');</script>";
 }
 
-if (isset($_GET["point"])) {
-	$codexml = $_GET["point"];
-    $piecexml = explode("/", $codexml);
-    $piecexml = explode(".", $piecexml[1]);
-	$fichierxml = fopen('config/config.poi', 'a');
-	if (!$fichierxml) {
-		throw new Exception('unable to write on config/config.poi ('.$_SERVER['USER'].')');
-	}
-	fwrite($fichierxml, $piecexml[0]."\r\n");
-	fclose($fichierxml);
-}
 $visualisationdisabled=array();
 
 $handle = fopen('config/config.poi', 'r');
