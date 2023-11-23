@@ -261,8 +261,8 @@ while ($i < $num) {
 				continue;
 			}
 			$xml = simplexml_load_file($filename);
-			$titlexml =$xml->TypePieceImport->Piece->InfoPiece->Objet['V'];
-			if ( substr($xml->TypePieceImport->Piece->InfoPiece->Objet['V'],0,16) == "Facturation 2019")
+			$titlexml = $xml->TypePieceImport->Piece->InfoPiece->Objet['V'].'';
+			if ( strpos($titlexml, "Facturation ".date('Y')) !== false)
 			{
 				$flagadh="[X]";
 			}
