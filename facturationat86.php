@@ -107,7 +107,7 @@ if (isset($_GET["point"])) {
 	fwrite($fichierxml, $piecexml[0]."\r\n");
 	fclose($fichierxml);
 }
-$linesficxml=array();
+$visualisationdisabled=array();
 
 $handle = fopen('config/config.poi', 'r');
 
@@ -117,7 +117,7 @@ if ($handle)
 	{
 		$buffer = fgets($handle);
 		$buffer = trim($buffer);
-                $linesficxml[$buffer]=1;
+                $visualisationdisabled[$buffer]=1;
 	}
 	fclose($handle);
 }
@@ -243,21 +243,22 @@ while ($i < $num) {
 		}
 		else
 		{
-			echo "<td>&nbsp;<!</td>";
+			echo "<td>&nbsp;</td>";
 		}
         echo "<td><table> ";
 		foreach (glob($grc_config['at86']['exportservice_path']."/".$insee."-".$annee."-*.xml") as $filename) {
 			$ficfilename = explode("/",$filename);
 			$ficfilename = explode(".",$ficfilename[1]);
 			$flagadh="";
-			if (isset($linesficxml[$ficfilename[0]]) && ($linesficxml[$ficfilename[0]] <> 1))
+			if (isset($visualisationdisabled[$ficfilename[0]]) && $visualisationdisabled[$ficfilename[0]])
 			{
-				$xml = simplexml_load_file($filename);
-				$titlexml =$xml->TypePieceImport->Piece->InfoPiece->Objet['V'];
-				if ( substr($xml->TypePieceImport->Piece->InfoPiece->Objet['V'],0,16) == "Facturation 2019")
-				{
-					$flagadh="[X]";
-				}
+				continue;
+			}
+			$xml = simplexml_load_file($filename);
+			$titlexml =$xml->TypePieceImport->Piece->InfoPiece->Objet['V'];
+			if ( substr($xml->TypePieceImport->Piece->InfoPiece->Objet['V'],0,16) == "Facturation 2019")
+			{
+				$flagadh="[X]";
 			}
 			echo "<tr>";
 			//echo "$filename occupe " . filesize($filename) . "\n";
