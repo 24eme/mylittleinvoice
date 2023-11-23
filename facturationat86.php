@@ -98,9 +98,12 @@ if (isset($_GET["unlink"])) {
 
 if (isset($_GET["point"])) {
 	$codexml = $_GET["point"];
-        $piecexml = explode("/", $codexml);
-        $piecexml = explode(".", $piecexml[1]);
+    $piecexml = explode("/", $codexml);
+    $piecexml = explode(".", $piecexml[1]);
 	$fichierxml = fopen('config/config.poi', 'a');
+	if (!$fichierxml) {
+		throw new Exception('unable to write on config/config.poi ('.$_SERVER['USER'].')');
+	}
 	fwrite($fichierxml, $piecexml[0]."\r\n");
 	fclose($fichierxml);
 }
